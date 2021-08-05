@@ -1,5 +1,7 @@
-function onConnection(socket) {
-  console.log('Connected - ', socket)
+const wrapper = (io) => {
+  return function onConnection(socket) {
+    console.log('Connected - ', io, socket)
+  }
 }
 
-module.exports = onConnection
+module.exports = wrapper

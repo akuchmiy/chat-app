@@ -8,7 +8,7 @@ const staticDir = path.resolve(__dirname, '../../dist')
 app.use(express.static(staticDir))
 
 app.get('/', (req, res) => {
-  res.sendFile(staticDir, (err) => {
+  res.status(200).sendFile(staticDir, (err) => {
     console.log(err)
   })
 })
