@@ -1,4 +1,5 @@
 const Room = require('../../../models/Room')
+const User = require('../../../models/User')
 // const Message = require('../../../models/Message')
 
 const roomController = {
@@ -12,7 +13,7 @@ const roomController = {
 
       return res.status(200).json({ data: rooms })
     } catch (e) {
-      return res.status(500).json({ message: 'Enexpected server error' + e })
+      return res.status(500).json({ message: 'Enexpected server error ' + e })
     }
   },
   async getRoom(req, res) {
@@ -26,14 +27,19 @@ const roomController = {
 
       return res.status(200).json({ data: room })
     } catch (e) {
-      return res.status(500).json({ message: 'Enexpected server error' })
+      return res.status(500).json({ message: 'Enexpected server error ' + e })
     }
   },
   async postRoom(req, res) {
     try {
       const { name } = req.body
       const room = new Room({ name, users: [req.userId] })
+      const user = await User.findOne({ _id: req.userId })
+
       await room.save()
+      const roomId = room._id
+      user.rooms.push(roomId)
+      await user.save()
 
       return res.status(200).json({ data: room })
     } catch (e) {
