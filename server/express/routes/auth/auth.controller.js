@@ -25,7 +25,7 @@ const authController = {
       const hashedPassword = bcrypt.hashSync(password, 7)
       const user = new User({ username, password: hashedPassword })
       await user.save()
-      return res.status(200).json(user)
+      return res.status(201).json(user)
     } catch (e) {
       console.log(e)
       return res.status(400).json({ message: 'Registration error.' })
