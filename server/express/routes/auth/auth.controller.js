@@ -1,18 +1,26 @@
 const User = require('../../../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const { validationResult } = require('express-validator')
 
-function errorMessage(res, status, message) {
-  res.status(status).json({ message })
+function generateAccessToken(id) {
+  const payload = { id }
+  return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '24h' })
 }
 
 const authController = {
   async registerUser(req, res) {
     try {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ message: 'Registration error', errors })
+      }
       const { username, password } = req.body
       const candidate = await User.findOne({ username })
       if (candidate) {
-        return errorMessage(res, 400, 'User with that username already exists')
+        return res
+          .status(400)
+          .json({ message: 'User with that username already exists' })
       }
       const hashedPassword = bcrypt.hashSync(password, 7)
       const user = new User({ username, password: hashedPassword })
@@ -20,7 +28,7 @@ const authController = {
       return res.status(200).json(user)
     } catch (e) {
       console.log(e)
-      return errorMessage(res, 400, 'Registration error.')
+      return res.status(400).json({ message: 'Registration error.' })
     }
   },
   async loginUser(req, res) {
@@ -28,19 +36,18 @@ const authController = {
       const { username, password } = req.body
       const candidate = await User.findOne({ username })
       if (!candidate)
-        return errorMessage(res, 400, "User with that username doesn't exist")
+        return res
+          .status(400)
+          .json({ message: "User with that username doesn't exist" })
 
       const matches = bcrypt.compareSync(password, candidate.password)
-      if (!matches) return errorMessage(res, 400, 'Invalid password')
+      if (!matches) return res.status(400).json({ message: 'Invalid password' })
 
-      const payload = {
-        sub: candidate._id,
-      }
-      const token = jwt.sign(payload, process.env.SECRET_KEY)
+      const token = generateAccessToken(candidate._id)
       return res.status(200).json({ token })
     } catch (e) {
       console.log(e)
-      return errorMessage(res, 400, 'Login error')
+      return res.status(400).json({ message: 'Login error' })
     }
   },
 }
