@@ -6,9 +6,7 @@ const userController = {
     try {
       const users = await User.find({}, ['_id', 'username', 'rooms'])
       if (!users)
-        return res
-          .status(204)
-          .json({ message: 'There are no users yet.', data: null })
+        return res.status(204)
 
       return res.status(200).json({ data: users })
     } catch (e) {
@@ -26,7 +24,7 @@ const userController = {
       ])
       if (!user)
         return res
-          .status(204)
+          .status(400)
           .json({ message: 'There is no user with such id', data: null })
 
       return res.status(200).json({ data: user })
@@ -40,13 +38,11 @@ const userController = {
       const user = await User.findOne({ _id: userId }, ['_id', 'rooms'])
       if (!user)
         return res
-          .status(204)
+          .status(400)
           .json({ message: 'There is no user with such id', data: null })
 
       if (!user.rooms)
-        return res
-          .status(204)
-          .json({ message: 'User doesn\'t attend any rooms', data: null })
+        return res.status(204)
 
       return res
         .status(200)
