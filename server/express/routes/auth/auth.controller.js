@@ -17,14 +17,13 @@ const authController = {
       }
       const { username, password } = req.body
       const candidate = await User.findOne({ username })
-      console.log(candidate)
       if (candidate) {
         return res
           .status(400)
           .json({ message: 'User with that username already exists' })
       }
       const hashedPassword = bcrypt.hashSync(password, 7)
-      const user = new User({ username, password: hashedPassword })
+      const user = new User({ username, password: hashedPassword, rooms: [] })
       await user.save()
       return res.status(200).json(user)
     } catch (e) {
@@ -45,7 +44,7 @@ const authController = {
       if (!matches) return res.status(400).json({ message: 'Invalid password' })
 
       const token = generateAccessToken(candidate._id)
-      return res.status(200).json({ token })
+      return res.status(200).json({ id: candidate._id, token })
     } catch (e) {
       console.log(e)
       return res.status(400).json({ message: 'Login error' })

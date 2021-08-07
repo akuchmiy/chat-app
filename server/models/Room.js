@@ -2,7 +2,10 @@ const { Schema, model } = require('mongoose')
 
 const room = new Schema({
   name: { type: String, required: true },
-  users: [{ type: String, ref: 'User', default: [] }],
+  users: [{
+    id: {type: Schema.Types.ObjectId, ref: 'User'},
+    username: {type: String}
+  }],
 })
 
 const Room = model('Room', room)

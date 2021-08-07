@@ -10,4 +10,7 @@ router.post('/', controller.postRoom)
 
 router.get('/:roomId', controller.getRoom)
 
+router.get('/:roomId/messages', controller.getRoomMessages)
+router.post('/:roomId/messages', controller.postRoomMessage)
+
 module.exports = router

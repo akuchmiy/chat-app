@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 function authCheck(req, res, next) {
-  if (req.method == 'OPTIONS') return next()
+  if (req.method === 'OPTIONS') return next()
 
   try {
     const token = req.get('Authorization').split(' ')[1]
