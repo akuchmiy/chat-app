@@ -1,6 +1,4 @@
-const Room = require('../../../models/Room')
-const User = require('../../../models/User')
-const Message = require('../../../models/Message')
+const {Room, User, Message} = require('../../../models')
 
 const roomController = {
   // route: GET /rooms
@@ -34,12 +32,7 @@ const roomController = {
   // route: GET /rooms/:roomId
   async getRoom(req, res) {
     try {
-      const roomId = req.params.roomId
-      const room = await Room.findOne({ _id: roomId })
-      if (!room)
-        return res
-          .status(400)
-          .json({ message: 'There is no room with such id', data: null })
+      const room = req.resource
 
       return res.status(200).json({ data: room })
     } catch (e) {
@@ -49,12 +42,7 @@ const roomController = {
   // route: GET /rooms/:roomId/users
   async getRoomUsers(req, res) {
     try {
-      const roomId = req.params.roomId
-      const room = await Room.findOne({ _id: roomId })
-      if (!room)
-        return res
-          .status(400)
-          .json({ message: 'There is no room with such id', data: null })
+      const room = req.resource
 
       return res.status(200).json({ _id: room._id, data: room.users })
     } catch (e) {
@@ -64,16 +52,11 @@ const roomController = {
   // route: POST /rooms/:roomId/users
   async postRoomUser(req, res) {
     try {
-      const roomId = req.params.roomId
       const user = await User.findOne({ _id: req.userId })
-      const room = await Room.findOne({ _id: roomId })
-      if (!room)
-        return res
-          .status(400)
-          .json({ message: 'There is no room with such id', data: null })
+      const room = req.resource
 
       for (let i = 0; i < user.rooms.length; i++) {
-        if (user.rooms[i].id.toString() === roomId)
+        if (user.rooms[i].id.toString() === room._id.toString())
           return res.status(400).json({message: 'This User is already a participant of the room'})
       }
 
@@ -93,9 +76,7 @@ const roomController = {
       const roomId = req.params.roomId
       const messages = await Message.find({ room: roomId }).sort([['date', 1]])
       if (!messages)
-        return res
-          .status(400)
-          .json({ message: 'There is no room with such id', data: null })
+        return res.status(204)
 
       return res.status(200).json({ _id: roomId, data: messages })
     } catch(e) {
