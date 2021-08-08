@@ -1,6 +1,5 @@
 <template>
   <main>
-    Hi from auth
     <router-view></router-view>
   </main>
 </template>
@@ -11,6 +10,12 @@
   }
 </script>
 
-<style scoped>
-
+<style>
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    flex: 1 1 auto;
+  }
 </style>
