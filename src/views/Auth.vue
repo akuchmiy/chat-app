@@ -3,11 +3,11 @@
     <form class='authorization__form' @submit.prevent>
       <h1 class='authorization__title'>Please log in</h1>
       <div class='authorization__fields'>
-        <label for='name'>Username:<abbr title='required' aria-label='required'>*</abbr></label>
-        <input v-model.trim='username' id='name' type='text' name='username'>
+        <label for='username'>Username:<abbr title='required' aria-label='required'>*</abbr></label>
+        <BasicInput id='username' v-model.trim='username' name='username'></BasicInput>
 
         <label for='password'>Password:<abbr title='required' aria-label='required'>*</abbr></label>
-        <input v-model.trim='password' id='password' type='password' name='password'>
+        <BasicInput id='password' v-model.trim='password' type='password' name='passport'></BasicInput>
       </div>
       <div class='authorization__submit'>
         <button @click='register' type='submit'>Register</button>
@@ -30,6 +30,7 @@
       register() {
       },
       login() {
+        console.log(this.password)
       },
     },
   }
@@ -61,28 +62,13 @@
     row-gap: 10px;
     //column-gap: 5px;
     align-items: center;
-    grid-template-columns: 0.8fr 1fr;
+    grid-template-columns: 1fr 1fr;
     margin-bottom: 20px;
     label {
-      justify-self: start;
+      justify-self: center;
     }
     input {
       justify-self: end;
-    }
-  }
-
-  input[type="text"], input[type="password"] {
-    box-sizing: border-box;
-    height: 30px;
-    display: inline-block;
-    padding: 10px;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    transition: all .3s;
-
-    &:focus {
-      border-color: black;
     }
   }
 
@@ -93,14 +79,17 @@
     button {
       display: inline-block;
       background: #ffc3a0;
-      padding: 5px 10px;
-      border: none;
+      padding: 10px 15px;
+      //border: none;
       border-radius: 5px;
       transition: all .4s;
+      cursor: pointer;
+      border: 1px solid transparent;
 
       &:focus, &:hover {
         outline: none;
         transform: translate(0, -4px);
+        border: 1px solid black;
       }
     }
   }
