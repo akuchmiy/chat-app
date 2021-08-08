@@ -8,4 +8,4 @@ const io = require('socket.io')(server, options)
 
 io.on('connection', registerOnConnection(io))
 
-module.exports = server
+module.exports = {server, io}

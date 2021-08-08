@@ -1,4 +1,4 @@
-const User = require('../../../models/User')
+const { User } = require('../../../models')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { validationResult } = require('express-validator')
@@ -38,7 +38,7 @@ const authController = {
       if (!candidate)
         return res
           .status(400)
-          .json({ message: "User with that username doesn't exist" })
+          .json({ message: 'User with that username doesn\'t exist' })
 
       const matches = bcrypt.compareSync(password, candidate.password)
       if (!matches) return res.status(400).json({ message: 'Invalid password' })

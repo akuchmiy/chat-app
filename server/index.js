@@ -1,4 +1,4 @@
-const server = require('./socket.io')
+const { server } = require('./socket.io')
 const path = require('path')
 const mongoose = require('mongoose')
 const mongoConfig = require('./config/mongoose.config')

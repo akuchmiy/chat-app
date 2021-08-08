@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const authMiddleware = require('../../middleware/authMiddleware')
 const resourceMiddleware = require('../../middleware/resourceMiddleware')
-const {User} = require('../../../models')
+const { User } = require('../../../models')
 const controller = require('./users.controller')
 
 function userResourceMiddleware(fieldsToRetrieve) {

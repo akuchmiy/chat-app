@@ -1,12 +1,26 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <component :is='layout'>
+  </component>
 </template>
 
-<style lang="scss">
+<script>
+  import AuthorizationLayout from '@/layouts/AuthorizationLayout.vue'
+  import MainLayout from '@/layouts/MainLayout.vue'
+  export default {
+    computed: {
+      layout() {
+        const layout = (this.$route.meta.layout || 'main') + '-layout'
+        console.log(layout)
+        return layout
+      }
+    },
+    components: {
+      AuthorizationLayout, MainLayout
+    },
+  }
+</script>
+
+<style lang='scss'>
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
