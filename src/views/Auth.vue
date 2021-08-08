@@ -4,14 +4,15 @@
       <h1 class='authorization__title'>Please log in</h1>
       <div class='authorization__fields'>
         <label for='username'>Username:<abbr title='required' aria-label='required'>*</abbr></label>
-        <BasicInput id='username' v-model.trim='username' name='username'></BasicInput>
+        <BasicInput id='username' v-model.trim='username' name='username' placeholder='Enter username'></BasicInput>
 
         <label for='password'>Password:<abbr title='required' aria-label='required'>*</abbr></label>
-        <BasicInput id='password' v-model.trim='password' type='password' name='passport'></BasicInput>
+        <BasicInput id='password' v-model.trim='password' type='password' name='passport'
+                    placeholder='Enter password'></BasicInput>
       </div>
       <div class='authorization__submit'>
-        <button @click='register' type='submit'>Register</button>
-        <button @click='login' type='submit'>Log in</button>
+        <BasicButton @click='register' type='submit'>Register</BasicButton>
+        <BasicButton @click='login' type='submit'>Log in</BasicButton>
       </div>
     </form>
   </div>
@@ -64,9 +65,11 @@
     align-items: center;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 20px;
+
     label {
       justify-self: center;
     }
+
     input {
       justify-self: end;
     }
@@ -76,22 +79,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    button {
-      display: inline-block;
-      background: #ffc3a0;
-      padding: 10px 15px;
-      //border: none;
-      border-radius: 5px;
-      transition: all .4s;
-      cursor: pointer;
-      border: 1px solid transparent;
-
-      &:focus, &:hover {
-        outline: none;
-        transform: translate(0, -4px);
-        border: 1px solid black;
-      }
-    }
   }
 
 </style>

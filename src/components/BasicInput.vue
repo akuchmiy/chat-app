@@ -10,7 +10,7 @@
   }
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
   input[type="text"], input[type="password"] {
     box-sizing: border-box;
     height: 30px;
