@@ -25,5 +25,8 @@
       transform: translate(0, -4px);
       border: 1px solid black;
     }
+    &:active {
+      box-shadow: inset 0 0 10px white;
+    }
   }
 </style>

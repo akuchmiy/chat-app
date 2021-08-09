@@ -6,6 +6,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    children: [
+      {
+        path: 'rooms/:roomId',
+        name: "Room",
+        component: () => import("../components/RoomContainer")
+      }
+    ]
   },
   {
     path: "/about",
@@ -18,7 +25,7 @@ const routes = [
     name: "Auth",
     meta: {layout: 'authorization'},
     component: () => import("../views/Auth.vue"),
-  }
+  },
 ];
 
 const router = createRouter({

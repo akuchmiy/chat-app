@@ -1,12 +1,12 @@
 <template>
+  <!-- TheNav component with rooms-->
   <div class='home'>
-    <img alt='Vue logo' src='../assets/logo.png' />
+    <router-view></router-view>
   </div>
+  <!-- TheFooter component -->
 </template>
 
 <script>
-  // @ is an alias to /src
-
   export default {
     name: 'Home',
     components: {},

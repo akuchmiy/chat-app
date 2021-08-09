@@ -29,9 +29,11 @@
     },
     methods: {
       register() {
+        console.log(this.username)
       },
       login() {
         console.log(this.password)
+        this.$router.push('/')
       },
     },
   }
@@ -44,7 +46,7 @@
     border-radius: 5px;
     box-shadow: 3px 3px 8px #2c3e50;
     background-color: white;
-    padding: 10px;
+    padding: 40px 10px;
   }
 
   .authorization__form {
@@ -54,17 +56,21 @@
   }
 
   .authorization__title {
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
   .authorization__fields {
     display: grid;
     //width: 300px;
     row-gap: 10px;
-    //column-gap: 5px;
+    column-gap: 5px;
     align-items: center;
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 20px;
+    }
 
     label {
       justify-self: center;
