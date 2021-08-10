@@ -1,12 +1,15 @@
 <template>
-  <div class='rooms__list-item'>
-    <div></div>
-    <span><b>{{ room.users }}</b></span>
-    <h4>{{ room.name }}</h4>
-  </div>
+  <router-link :to='link' class='rooms__list-link'>
+    <div class='rooms__list-item'>
+      <div></div>
+      <span><b>{{ room.users }}</b></span>
+      <h4>{{ room.name }}</h4>
+    </div>
+  </router-link>
 </template>
 
 <script>
+  import {computed} from 'vue'
   export default {
     name: 'RoomsListItem',
     props: {
@@ -15,10 +18,21 @@
         required: true,
       },
     },
+    setup(props) {
+      const link = computed(() => `/rooms/${props.room.id}`)
+
+      return {link}
+    },
   }
 </script>
 
 <style lang='scss'>
+
+  .rooms__list-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .rooms__list-item {
     background-color: #fff;
     z-index: 100;
@@ -28,7 +42,7 @@
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 5px 5px rgba(51, 51, 51, 0.18);
-    transition: transform .25s, box-shadow .25s;
+    transition: .25s;
     cursor: pointer;
 
     &:hover {
@@ -55,5 +69,9 @@
     span {
       margin: 0 30px 0 10px;
     }
+  }
+
+  a.rooms__list-link.router-link-exact-active .rooms__list-item{
+    background-color: #eeeeee;
   }
 </style>

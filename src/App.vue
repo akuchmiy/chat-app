@@ -37,6 +37,11 @@
     background: linear-gradient(135deg, #ffafbd, #ffc3a0);
   }
 
+  .rounded-shadow {
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px #7c7c7c;
+  }
+
   .slide-enter-active,
   .slide-leave-active {
     transition: all .5s;

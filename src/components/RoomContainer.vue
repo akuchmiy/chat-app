@@ -1,5 +1,10 @@
 <template>
-  <div>{{ roomId }}</div>
+<!--  <transition name='fade' mode='out-in'>-->
+    <div class='room rounded-shadow'>
+      <h2 class='room__header'>Room name</h2>
+      {{ roomId }}
+    </div>
+<!--  </transition>-->
 </template>
 
 <script>
@@ -17,6 +22,23 @@
   }
 </script>
 
-<style scoped>
+<style lang='scss'>
+  .room {
+    background-color: #fff;
+    padding: 10px;
+  }
 
+  .room__header {
+    margin-bottom: 10px;
+  }
+
+  //.fade-enter-active,
+  //.fade-leave-active {
+  //  transition: .3s;
+  //}
+  //
+  //.fade-enter-to,
+  //.fade-leave-to {
+  //  opacity: 0.5;
+  //}
 </style>

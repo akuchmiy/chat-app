@@ -35,4 +35,8 @@
   .rooms__list > li {
     margin-bottom: 10px;
   }
+
+  .rooms__list > li:last-child {
+    margin-bottom: 0;
+  }
 </style>

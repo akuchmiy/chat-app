@@ -1,28 +1,24 @@
 <template>
   <div class='home'>
     <RoomsNav></RoomsNav>
-    <router-view></router-view>
+    <router-view :key='$route.fullPath'></router-view>
   </div>
 </template>
 
 <script>
   import RoomsNav from '@/components/RoomsNav.vue'
+
   export default {
     name: 'Home',
-    components: {RoomsNav},
+    components: { RoomsNav },
   }
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
   .home {
+    flex: 1 1 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 0 10px;
-    column-gap: 5px;
-  }
-
-  .rounded-shadow {
-    border-radius: 10px;
-    box-shadow: 3px 3px 8px #7c7c7c;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 10px;
   }
 </style>
