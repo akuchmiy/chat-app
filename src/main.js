@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import BasicInput from './components/BasicInput'
 import BasicButton from './components/BasicButton'
+import './services/socketService'
 
 createApp(App)
   .use(store)

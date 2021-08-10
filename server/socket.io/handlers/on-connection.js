@@ -1,16 +1,19 @@
 const wrapper = (io) => {
   return (socket) => {
-    socket.on("connect to room", (userId, prevRoomId, nextRoomId, cb) => {
-      socket.to(prevRoomId).emit("user leaving", userId)
-      socket.leave(prevRoomId)
+    socket.on("connect to room", (userId, nextRoomId, cb) => {
+      const prevRoom = socket.currentRoom
+      if (prevRoom) {
+        socket.to(prevRoom).emit("user leaving", userId)
+        socket.leave(prevRoom)
+      }
       socket.join(nextRoomId)
       socket.currentRoom = nextRoomId
-      cb(nextRoomId)
+      cb(prevRoom)
     })
 
-    socket.on("message", () => {
+    socket.on("message", (message) => {
       const room = socket.currentRoom
-      socket.to(room).emit("message")
+      socket.to(room).emit("message", message)
     })
   }
 }
