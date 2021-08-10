@@ -13,7 +13,15 @@
     name: 'RoomMessageForm',
     setup() {
       const message = ref('')
-      const sendMessage = () => socket.emit('message', message.value)
+      const sendMessage = () => {
+        socket.emit('message', {
+            text: message.value,
+            username: 'Vasya',
+            date: Date.now(),
+          })
+      message.value = ''
+      }
+
       return { message, sendMessage }
     },
   }

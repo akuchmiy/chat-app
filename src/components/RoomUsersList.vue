@@ -1,7 +1,9 @@
 <template>
   <div class='room__users'>
     <h3>Users</h3>
-    <ul></ul>
+    <ul>
+      <!--  TODO - User component    -->
+    </ul>
   </div>
 </template>
 
