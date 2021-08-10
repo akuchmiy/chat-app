@@ -28,11 +28,11 @@
       const messages = ref([
         { text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
             'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() },
+            'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000 },
         { text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
             'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() },
-        { text: 'Kostia 1 2 3', username: 'Natasha', date: Date.now() + 2 },
+            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000 },
+        { text: 'Kostia 1 2 3', username: 'Natasha', date: Date.now() + 3000 },
       ])
       const onMessageHandler = (data) => {
         messages.value.push(data)
