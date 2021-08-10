@@ -11,9 +11,9 @@ const wrapper = (io) => {
       cb(prevRoom)
     })
 
-    socket.on("message", (message) => {
+    socket.on("message", (data) => {
       const room = socket.currentRoom
-      socket.to(room).emit("message", message)
+      socket.to(room).emit("message", data)
     })
   }
 }

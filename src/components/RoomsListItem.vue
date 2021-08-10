@@ -55,7 +55,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: #ededed;
+      background-color: #ffc3a0;
       width: 100%;
       height: 100%;
       clip-path: circle(40px at 20px 50%);
