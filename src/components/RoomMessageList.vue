@@ -26,11 +26,11 @@
       const isCurrentUser = (username) => username === 'Vasya'
       const messageKey = (message) => message.username + message.date
       const messages = ref([
-        // {
-        //   text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-        //     'lorem ipsum dolor sit amet' +
-        //     'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000,
-        // },
+        {
+          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+            'lorem ipsum dolor sit amet' +
+            'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000,
+        },
         // {
         //   text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
         //     'lorem ipsum dolor sit amet' +
@@ -69,10 +69,10 @@
   .room__message-container {
     border-right: 2px solid #ffc3a0;
     overflow-y: scroll;
-    //max-height: 70vh;
+    padding-right: 5px;
+    max-height: calc(100vh - 172px);
 
     .messages {
-      padding-right: 5px;
       list-style: none;
       display: grid;
       row-gap: 10px;
