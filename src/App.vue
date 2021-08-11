@@ -58,4 +58,12 @@
     opacity: 0;
   }
 
+  .hidden-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hidden-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 </style>

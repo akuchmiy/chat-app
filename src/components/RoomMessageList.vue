@@ -1,5 +1,5 @@
 <template>
-  <div class='room__message-container'>
+  <div class='room__message-container hidden-scroll'>
     <ul class='messages'>
       <MessageItem
         v-for='message of messages'
@@ -26,12 +26,31 @@
       const isCurrentUser = (username) => username === 'Vasya'
       const messageKey = (message) => message.username + message.date
       const messages = ref([
-        { text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+        // {
+        //   text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+        //     'lorem ipsum dolor sit amet' +
+        //     'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000,
+        // },
+        // {
+        //   text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+        //     'lorem ipsum dolor sit amet' +
+        //     'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
+        // },
+        {
+          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
             'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000 },
-        { text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
+        },
+        {
+          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
             'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000 },
+            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
+        },
+        {
+          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
+            'lorem ipsum dolor sit amet' +
+            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
+        },
         { text: 'Kostia 1 2 3', username: 'Natasha', date: Date.now() + 3000 },
       ])
       const onMessageHandler = (data) => {
@@ -49,12 +68,15 @@
 <style lang='scss'>
   .room__message-container {
     border-right: 2px solid #ffc3a0;
+    overflow-y: scroll;
+    //max-height: 70vh;
 
     .messages {
       padding-right: 5px;
       list-style: none;
       display: grid;
       row-gap: 10px;
+
     }
   }
 </style>
