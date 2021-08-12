@@ -3,7 +3,6 @@ function getUserIdsFromSockets(io, socketIds) {
   for (let socketId of socketIds) {
     const socket = io.sockets.sockets.get(socketId);
     ids.push(socket.userId)
-    console.log(socket)
   }
   return ids
 }

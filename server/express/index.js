@@ -1,12 +1,14 @@
 const express = require('express')
 const path = require('path')
+const cors = require('cors')
+const config = require('../config/express.config')
 const auth = require('./routes/auth/auth.router')
 const rooms = require('./routes/rooms/rooms.router')
 const users = require('./routes/users/users.router')
 
 const app = express()
 app.use(express.json())
-
+app.use(cors(config.corsOptions))
 const staticDir = path.resolve(__dirname, '../../dist')
 app.use(express.static(staticDir))
 

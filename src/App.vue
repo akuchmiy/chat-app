@@ -14,6 +14,9 @@
         return (this.$route.meta.layout || 'main') + '-layout'
       },
     },
+    mounted() {
+      this.$store.dispatch('auth/getUserData', {username: 'user', password: 'useruser'})
+    },
     components: {
       AuthorizationLayout, MainLayout,
     },
