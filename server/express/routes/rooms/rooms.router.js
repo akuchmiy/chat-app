@@ -28,6 +28,7 @@ router.post('/:roomId/users', [
 router.get('/:roomId/messages', [
   roomResourceMiddleware()
 ], controller.getRoomMessages)
+
 router.post('/:roomId/messages', controller.postRoomMessage)
 
 module.exports = router

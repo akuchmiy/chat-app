@@ -10,14 +10,10 @@ function getUserIdsFromSockets(io, socketIds) {
 module.exports = function onRoomConnection(io, socket) {
   socket.on("connect to room", (userId, nextRoomId, cb) => {
     socket.userId = userId
-    const prevRoom = socket.currentRoom
-    if (prevRoom) {
-      socket.to(prevRoom).emit("user leaving", userId)
-      socket.leave(prevRoom)
-    }
-    socket.join(nextRoomId.toString())
+    socket.join(nextRoomId)
+    socket.to(nextRoomId).emit('user connected', userId)
     socket.currentRoom = nextRoomId
-    const socketsIdsInRoom = io.sockets.adapter.rooms.get(nextRoomId.toString())
+    const socketsIdsInRoom = io.sockets.adapter.rooms.get(nextRoomId)
     const userIds = getUserIdsFromSockets(io, socketsIdsInRoom)
     cb(userIds)
   })

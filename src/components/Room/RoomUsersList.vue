@@ -12,9 +12,10 @@
 </template>
 
 <script>
-  // import apiService from '../services/apiService'
   import UserListItem from './UserListItem'
-  import { reactive } from 'vue'
+  import { computed, onMounted, onBeforeUnmount } from 'vue'
+  import { useStore } from 'vuex'
+  import { socket } from '../../services/socketService'
 
   export default {
     name: 'RoomUsersList',
@@ -25,14 +26,26 @@
       },
     },
     setup() {
-      // const roomId = props.roomId
-      const users = reactive([
-        {id: 1, username: 'Vasya', online: true},
-        {id: 2, username: 'Petya', online: false},
-        {id: 3, username: 'Dima', online: true},
-      ])
+      const store = useStore()
+      const users = computed(() => store.state.room.users)
 
-      // apiService.getRoom(roomId, token).then((data) => roomName.value = data.data.name)
+      function userConnectedHandler(userId) {
+        store.commit('room/SET_USER_STATUS', {userId, status: true})
+      }
+      function userDisconnectedHandler(userId) {
+        store.commit('room/SET_USER_STATUS', {userId, status: false})
+      }
+
+      onMounted(() => {
+        socket.on('user connected', userConnectedHandler)
+        socket.on('user leaving', userDisconnectedHandler)
+      })
+      onBeforeUnmount(() => {
+        socket.off('user connected', userConnectedHandler)
+        socket.off('user leaving', userDisconnectedHandler)
+        socket.emit('user leaving', store.state.auth.userId)
+      })
+
       return { users }
     },
     components: { UserListItem },

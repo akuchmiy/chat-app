@@ -13,6 +13,17 @@ export default {
     PUSH_MESSAGE(state, message) {
       state.messages.push(message)
     },
+    CLEAR_MESSAGES(state) {
+      state.messages = []
+    },
+    SET_USERS(state, users) {
+      state.users = users
+    },
+    SET_USER_STATUS(state, { userId, status }) {
+      const user = state.users.find(user => user.id === userId)
+      if (!user) return
+      user.online = status
+    },
   },
   actions: {
     fetchMessages({ commit, rootState }, roomId) {
@@ -25,12 +36,17 @@ export default {
         commit('PUSH_MESSAGE', serverData)
       })
     },
-    pushMessageSocket({commit}, data) {
+    pushMessageSocket({ commit }, data) {
       if (!(data && data.text && data.username)) return
       commit('PUSH_MESSAGE', {
-        user: {username: data.username},
+        user: { username: data.username },
         text: data.text,
-        date: new Date(data.date).toUTCString()
+        date: new Date(data.date).toUTCString(),
+      })
+    },
+    fetchUsers({ commit, rootState }, roomId) {
+      return apiService.getRoomUsers(roomId, rootState.auth.token).then(data => {
+        commit('SET_USERS', data.data)
       })
     }
   },

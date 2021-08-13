@@ -38,7 +38,10 @@
         store.dispatch('room/fetchMessages', props.roomId)
         socket.on('message', onMessageHandler)
       })
-      onBeforeUnmount(() => socket.off('message', onMessageHandler))
+      onBeforeUnmount(() => {
+        store.commit('room/CLEAR_MESSAGES')
+        socket.off('message', onMessageHandler)
+      })
 
       return { messages, isCurrentUser, messageKey }
     },
@@ -55,7 +58,7 @@
     .messages {
       list-style: none;
       display: grid;
-      row-gap: 10px;
+      row-gap: 5px;
 
     }
   }

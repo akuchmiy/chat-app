@@ -35,13 +35,16 @@
 
       const connectToRoom = () => {
         const { userId, token } = store.state.auth
-        apiService.getRoom(roomId, token).then((data) => roomName.value = data.data.name)
-        socket.emit('connect to room', userId, roomId, (activeUsers) => {
-          console.log('Param - ', activeUsers)
-        })
-
+        apiService.getRoom(roomId, token)
+          .then((data) => roomName.value = data.data.name)
+          .then(() => store.dispatch('room/fetchUsers', roomId))
+          .then(() => socket.emit('connect to room', userId, roomId, (activeUsers) => {
+            activeUsers.forEach(user => store.commit('room/SET_USER_STATUS', {
+              userId: user,
+              status: true
+            }))
+          }))
       }
-
       onMounted(connectToRoom)
 
       return { roomId, roomName }
