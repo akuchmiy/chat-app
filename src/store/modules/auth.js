@@ -1,4 +1,4 @@
-import apiService from '../../services/apiService'
+// import apiService from '../../services/apiService'
 
 export default {
   namespaced: true,
@@ -15,14 +15,15 @@ export default {
     }
   },
   actions: {
-    async getUserData({commit}, data) {
-      try {
-        const { id, token } = await apiService.loginUser(data)
-        commit('SET_USER_ID', id)
-        commit('SET_BEARER_TOKEN', token)
-      } catch(e) {
-        console.log(e)
-      }
+    setUserData({commit}, data) {
+      if (!(data.id && data.token)) return
+        commit('SET_USER_ID', data.id)
+        commit('SET_BEARER_TOKEN', data.token)
+    }
+  },
+  getters: {
+    hasAccess(state) {
+      return state.userId && state.token
     }
   }
 }

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import store from '../store'
 import Home from "../views/Home.vue";
 
 const routes = [
@@ -6,6 +7,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    beforeEnter: (to, from, next) => {
+      const hasAccess = store.getters['auth/hasAccess']
+      if (!hasAccess) next('/auth')
+      else next()
+    },
     children: [
       {
         path: 'rooms/:roomId',

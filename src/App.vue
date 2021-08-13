@@ -7,15 +7,15 @@
 <script>
   import AuthorizationLayout from '@/layouts/AuthorizationLayout.vue'
   import MainLayout from '@/layouts/MainLayout.vue'
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
 
   export default {
-    computed: {
-      layout() {
-        return (this.$route.meta.layout || 'main') + '-layout'
-      },
-    },
-    mounted() {
-      this.$store.dispatch('auth/getUserData', {username: 'user', password: 'useruser'})
+    setup() {
+      const route = useRoute()
+      const layout = computed(() => (route.meta.layout || 'main') + '-layout');
+
+      return { layout }
     },
     components: {
       AuthorizationLayout, MainLayout,

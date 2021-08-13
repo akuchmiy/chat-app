@@ -19,22 +19,41 @@
 </template>
 
 <script>
+  import { ref } from 'vue'
+  import { useStore } from 'vuex'
+  import { useRouter } from 'vue-router'
+  import apiService from '../services/apiService'
+
   export default {
     name: 'Auth',
-    data() {
-      return {
-        username: '',
-        password: '',
+    setup() {
+      const username = ref('')
+      const password = ref('')
+      const store = useStore()
+      const router = useRouter()
+
+      function register() {
+        apiService.registerUser({
+          username: username.value,
+          password: password.value,
+        }).then(() => {
+          alert('User successfully created')
+        }).catch((e) => console.dir(e))
       }
-    },
-    methods: {
-      register() {
-        console.log(this.username)
-      },
-      login() {
-        console.log(this.password)
-        this.$router.push('/')
-      },
+
+      function login() {
+        apiService.loginUser({
+          username: username.value,
+          password: password.value,
+        }).then((data) => {
+          store.dispatch('auth/setUserData', data)
+          console.log(data)
+          router.push('/')
+        })
+          .catch((e) => console.log("In Auth.vue" + e))
+      }
+
+      return { username, password, register, login }
     },
   }
 </script>
