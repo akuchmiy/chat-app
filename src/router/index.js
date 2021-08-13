@@ -16,7 +16,7 @@ const routes = [
       {
         path: 'rooms/:roomId',
         name: "Room",
-        component: () => import("../components/RoomContainer")
+        component: () => import("../components/Room/RoomContainer")
       }
     ]
   },

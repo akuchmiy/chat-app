@@ -1,7 +1,7 @@
 <template>
   <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
-    <h2 class='room__header'>Room name {{ roomName }}</h2>
+    <h2 class='room__header'>{{ roomName }}</h2>
     <div class='room__body'>
       <RoomMessageList :roomId='roomId'></RoomMessageList>
       <RoomUsersList :roomId='roomId'></RoomUsersList>
@@ -16,9 +16,9 @@
   import { onMounted, reactive, ref } from 'vue'
   import { useStore } from 'vuex'
   import { socket } from '@/services/socketService'
-  import apiService from '../services/apiService'
-  import RoomMessageList from '@/components/RoomMessageList'
-  import RoomUsersList from '@/components/RoomUsersList'
+  import apiService from '../../services/apiService'
+  import RoomMessageList from '@/components/Room/RoomMessageList'
+  import RoomUsersList from '@/components/Room/RoomUsersList'
   import RoomMessageForm from './RoomMessageForm'
 
   export default {

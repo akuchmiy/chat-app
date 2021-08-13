@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { socket } from '../services/socketService'
+  import { socket } from '../../services/socketService'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
   import MessageItem from './MessageItem'
   import { useStore } from 'vuex'

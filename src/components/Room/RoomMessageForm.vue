@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { socket } from '../services/socketService'
+  import { socket } from '../../services/socketService'
   import { ref } from 'vue'
   import { useStore } from 'vuex'
 

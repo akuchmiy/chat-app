@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { dateTimeMixin } from '../mixins/dateTimeMixin'
+  import { dateTimeMixin } from '../../mixins/dateTimeMixin'
   export default {
     name: 'MessageItem',
     props: {

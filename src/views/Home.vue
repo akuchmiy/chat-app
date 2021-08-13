@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import RoomsNav from '@/components/RoomsNav.vue'
+  import RoomsNav from '@/components/RoomsNav/RoomsNav.vue'
 
   export default {
     name: 'Home',

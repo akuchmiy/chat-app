@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import RoomsList from '@/components/RoomsList.vue'
+  import RoomsList from '@/components/RoomsNav/RoomsList.vue'
   export default {
     name: 'RoomsNav',
     components: {
@@ -20,6 +20,7 @@
   .nav {
     background-color: #fff;
     padding: 10px;
+    min-width: 220px;
   }
   .nav__header, hr {
     margin-bottom: 10px;

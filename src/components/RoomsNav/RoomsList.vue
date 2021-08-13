@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import RoomsListItem from '@/components/RoomsListItem.vue'
-  import apiService from '../services/apiService'
+  import RoomsListItem from '@/components/RoomsNav/RoomsListItem.vue'
+  import apiService from '../../services/apiService'
   import { reactive, onMounted } from 'vue'
   import { useStore } from 'vuex'
 
