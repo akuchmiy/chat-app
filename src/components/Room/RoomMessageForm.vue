@@ -12,17 +12,26 @@
 
   export default {
     name: 'RoomMessageForm',
-    setup() {
+    props: {
+      roomId: {
+        type: String,
+        required: true
+      }
+    },
+    setup(props) {
       const store = useStore()
 
       const message = ref('')
       const sendMessage = () => {
-        const { username } = store.state.auth
-        socket.emit('message', {
+        const data = {
+          username: store.state.auth.username,
           text: message.value,
-          date: Date.now(),
-          username,
+          date: Date.now()
+        }
+        store.dispatch('room/pushMessage', {data, roomId: props.roomId}).then(() => {
+          socket.emit('message', data)
         })
+
         message.value = ''
       }
 

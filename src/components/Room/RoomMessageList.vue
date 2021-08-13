@@ -5,7 +5,7 @@
         v-for='message of messages'
         :key='messageKey(message)'
         :message='message'
-        :current-user='isCurrentUser(message.username)'
+        :current-user='isCurrentUser(message.user.username)'
       ></MessageListItem>
     </ul>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
   import { socket } from '../../services/socketService'
-  import { onBeforeUnmount, onMounted, reactive } from 'vue'
+  import { computed, onBeforeUnmount, onMounted } from 'vue'
   import MessageListItem from './MessageListItem'
   import { useStore } from 'vuex'
 
@@ -23,18 +23,21 @@
     props: {
       roomId: { type: String, required: true },
     },
-    setup() {
+    setup(props) {
       const store = useStore()
 
       const isCurrentUser = (username) => username === store.state.auth.username
-      const messageKey = (message) => message.username + message.date
-      const messages = reactive([])
+      const messageKey = (message) => message.user.username + message.date
+      const messages = computed(() => store.state.room.messages)
 
       const onMessageHandler = (data) => {
-        messages.push(data)
+        store.dispatch('room/pushMessageSocket', data)
       }
 
-      onMounted(() => socket.on('message', onMessageHandler))
+      onMounted(() => {
+        store.dispatch('room/fetchMessages', props.roomId)
+        socket.on('message', onMessageHandler)
+      })
       onBeforeUnmount(() => socket.off('message', onMessageHandler))
 
       return { messages, isCurrentUser, messageKey }

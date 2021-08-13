@@ -9,7 +9,7 @@
       <RoomMessageList :roomId='roomId'></RoomMessageList>
       <RoomUsersList :roomId='roomId'></RoomUsersList>
     </div>
-    <RoomMessageForm></RoomMessageForm>
+    <RoomMessageForm :roomId='roomId'></RoomMessageForm>
   </div>
   <!--  </transition>-->
 </template>

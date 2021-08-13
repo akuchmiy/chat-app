@@ -7,6 +7,12 @@ export default function roomApiService(apiClient) {
     },
     getRoom(roomId, token) {
       return apiClient.get(`/rooms/${roomId}`, setAuthHeader(token)).then(data => data.data)
+    },
+    getRoomMessages(roomId, token) {
+      return apiClient.get(`rooms/${roomId}/messages`, setAuthHeader(token)).then(data => data.data)
+    },
+    postRoomMessage(data, roomId, token) {
+      return apiClient.post(`rooms/${roomId}/messages`, data, setAuthHeader(token)).then(data => data.data)
     }
   }
 }
