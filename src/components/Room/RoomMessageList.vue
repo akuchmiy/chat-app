@@ -1,25 +1,25 @@
 <template>
   <div class='room__message-container hidden-scroll'>
     <ul class='messages'>
-      <MessageItem
+      <MessageListItem
         v-for='message of messages'
         :key='messageKey(message)'
         :message='message'
         :current-user='isCurrentUser(message.username)'
-      ></MessageItem>
+      ></MessageListItem>
     </ul>
   </div>
 </template>
 
 <script>
   import { socket } from '../../services/socketService'
-  import { onBeforeUnmount, onMounted, ref } from 'vue'
-  import MessageItem from './MessageItem'
+  import { onBeforeUnmount, onMounted, reactive } from 'vue'
+  import MessageListItem from './MessageListItem'
   import { useStore } from 'vuex'
 
   export default {
     name: 'RoomMessageList',
-    components: { MessageItem },
+    components: { MessageListItem },
     props: {
       roomId: { type: String, required: true },
     },
@@ -28,10 +28,10 @@
 
       const isCurrentUser = (username) => username === store.state.auth.username
       const messageKey = (message) => message.username + message.date
-      const messages = ref([])
+      const messages = reactive([])
 
       const onMessageHandler = (data) => {
-        messages.value.push(data)
+        messages.push(data)
       }
 
       onMounted(() => socket.on('message', onMessageHandler))

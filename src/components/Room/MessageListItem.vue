@@ -10,7 +10,7 @@
 <script>
   import { dateTimeMixin } from '../../mixins/dateTimeMixin'
   export default {
-    name: 'MessageItem',
+    name: 'MessageListItem',
     props: {
       message: {
         type: Object,
@@ -22,7 +22,7 @@
       },
     },
     setup() {
-      const dateTimeFilter = dateTimeMixin()
+      const dateTimeFilter = dateTimeMixin('ru-RU')
 
       return { dateTimeFilter }
     }

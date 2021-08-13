@@ -1,7 +1,10 @@
 <template>
   <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
-    <h2 class='room__header'>{{ roomName }}</h2>
+    <div class='room__header'>
+      <h2>{{ roomName }}</h2>
+      <h3>Users</h3>
+    </div>
     <div class='room__body'>
       <RoomMessageList :roomId='roomId'></RoomMessageList>
       <RoomUsersList :roomId='roomId'></RoomUsersList>
@@ -13,7 +16,7 @@
 
 <script>
   import { useRoute } from 'vue-router'
-  import { onMounted, reactive, ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { useStore } from 'vuex'
   import { socket } from '@/services/socketService'
   import apiService from '../../services/apiService'
@@ -28,8 +31,6 @@
       const route = useRoute()
       const store = useStore()
       const roomId = route.params.roomId
-
-      const users = reactive([])
       const roomName = ref('')
 
       const connectToRoom = () => {
@@ -43,7 +44,7 @@
 
       onMounted(connectToRoom)
 
-      return { roomId, users, roomName }
+      return { roomId, roomName }
     },
   }
 </script>
@@ -64,6 +65,9 @@
   }
 
   .room__header {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 10px;
     margin-bottom: 10px;
   }
 
