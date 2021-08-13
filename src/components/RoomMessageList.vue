@@ -20,7 +20,7 @@
     name: 'RoomMessageList',
     components: { MessageItem },
     props: {
-      roomId: { type: Number, required: true },
+      roomId: { type: String, required: true },
     },
     setup() {
       const isCurrentUser = (username) => username === 'Vasya'
