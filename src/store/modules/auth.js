@@ -3,27 +3,27 @@
 export default {
   namespaced: true,
   state: {
-    userId: null,
-    token: null,
+    userId: '',
+    token: '',
+    username: '',
   },
   mutations: {
-    SET_USER_ID(state, userId) {
+    SET_USER_DATA(state, {userId, token, username}) {
       state.userId = userId
-    },
-    SET_BEARER_TOKEN(state, token) {
       state.token = token
-    }
+      state.username = username
+      console.log(token)
+    },
   },
   actions: {
-    setUserData({commit}, data) {
-      if (!(data.id && data.token)) return
-        commit('SET_USER_ID', data.id)
-        commit('SET_BEARER_TOKEN', data.token)
-    }
+    setUserData({ commit }, { id, token, username }) {
+      if (!(id && token && username)) return
+      commit('SET_USER_DATA', {userId: id, token, username})
+    },
   },
   getters: {
     hasAccess(state) {
       return state.userId && state.token
-    }
-  }
+    },
+  },
 }

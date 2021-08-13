@@ -8,18 +8,22 @@
 <script>
   import { socket } from '../services/socketService'
   import { ref } from 'vue'
+  import { useStore } from 'vuex'
 
   export default {
     name: 'RoomMessageForm',
     setup() {
+      const store = useStore()
+
       const message = ref('')
       const sendMessage = () => {
+        const { username } = store.state.auth
         socket.emit('message', {
-            text: message.value,
-            username: 'Vasya',
-            date: Date.now(),
-          })
-      message.value = ''
+          text: message.value,
+          date: Date.now(),
+          username,
+        })
+        message.value = ''
       }
 
       return { message, sendMessage }

@@ -4,7 +4,7 @@
     <h2 class='room__header'>Room name {{ roomName }}</h2>
     <div class='room__body'>
       <RoomMessageList :roomId='roomId'></RoomMessageList>
-      <RoomUsersList :users='users'></RoomUsersList>
+      <RoomUsersList :roomId='roomId'></RoomUsersList>
     </div>
     <RoomMessageForm></RoomMessageForm>
   </div>
@@ -34,10 +34,11 @@
 
       const connectToRoom = () => {
         const { userId, token } = store.state.auth
-        socket.emit('connect to room', userId, roomId, (param) => {
-          console.log('Param - ', param)
-        })
         apiService.getRoom(roomId, token).then((data) => roomName.value = data.data.name)
+        socket.emit('connect to room', userId, roomId, (activeUsers) => {
+          console.log('Param - ', activeUsers)
+        })
+
       }
 
       onMounted(connectToRoom)

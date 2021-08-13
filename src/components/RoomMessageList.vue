@@ -15,6 +15,7 @@
   import { socket } from '../services/socketService'
   import { onBeforeUnmount, onMounted, ref } from 'vue'
   import MessageItem from './MessageItem'
+  import { useStore } from 'vuex'
 
   export default {
     name: 'RoomMessageList',
@@ -23,36 +24,12 @@
       roomId: { type: String, required: true },
     },
     setup() {
-      const isCurrentUser = (username) => username === 'Vasya'
+      const store = useStore()
+
+      const isCurrentUser = (username) => username === store.state.auth.username
       const messageKey = (message) => message.username + message.date
-      const messages = ref([
-        {
-          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-            'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Vasya', date: Date.now() + 1000,
-        },
-        // {
-        //   text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-        //     'lorem ipsum dolor sit amet' +
-        //     'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
-        // },
-        {
-          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-            'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
-        },
-        {
-          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-            'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
-        },
-        {
-          text: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet \n ' +
-            'lorem ipsum dolor sit amet' +
-            'lorem ipsum dolor sit amet', username: 'Dima', date: Date.now() + 2000,
-        },
-        { text: 'Kostia 1 2 3', username: 'Natasha', date: Date.now() + 3000 },
-      ])
+      const messages = ref([])
+
       const onMessageHandler = (data) => {
         messages.value.push(data)
       }

@@ -1,10 +1,4 @@
-function setAuthHeader(token) {
-  return {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  }
-}
+import setAuthHeader from '../helpers/setAuthHeader'
 
 export default function roomApiService(apiClient) {
   return {

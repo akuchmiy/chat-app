@@ -40,6 +40,7 @@
     padding: 15px;
     display: flex;
     overflow: hidden;
+    word-wrap: break-word;
     border-radius: 10px;
     box-shadow: 0 5px 5px rgba(51, 51, 51, 0.18);
     transition: .25s;

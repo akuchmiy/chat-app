@@ -1,6 +1,7 @@
 import axios from 'axios'
 import authApiService  from './authApiService'
 import roomApiService from './roomApiService'
+import userApiService from './userApiService'
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:3000',
@@ -13,5 +14,6 @@ const apiClient = axios.create({
 
 export default {
   ...authApiService(apiClient),
-  ...roomApiService(apiClient)
+  ...roomApiService(apiClient),
+  ...userApiService(apiClient)
 }

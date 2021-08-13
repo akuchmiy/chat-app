@@ -46,8 +46,7 @@
           username: username.value,
           password: password.value,
         }).then((data) => {
-          store.dispatch('auth/setUserData', data)
-          console.log(data)
+          store.dispatch('auth/setUserData', {...data, username: username.value})
           router.push('/')
         })
           .catch((e) => console.log("In Auth.vue" + e))
