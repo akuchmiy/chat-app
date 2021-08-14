@@ -39,8 +39,8 @@
           .then((data) => roomName.value = data.data.name)
           .then(() => store.dispatch('room/fetchUsers', roomId))
           .then(() => socket.emit('connect to room', userId, roomId, (activeUsers) => {
-            activeUsers.forEach(user => store.commit('room/SET_USER_STATUS', {
-              userId: user,
+            activeUsers.forEach(userId => store.commit('room/SET_USER_STATUS', {
+              userId,
               status: true
             }))
           }))

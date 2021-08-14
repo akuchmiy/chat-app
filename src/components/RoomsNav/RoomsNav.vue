@@ -20,7 +20,7 @@
   .nav {
     background-color: #fff;
     padding: 10px;
-    min-width: 220px;
+    overflow: hidden;
   }
   .nav__header, hr {
     margin-bottom: 10px;

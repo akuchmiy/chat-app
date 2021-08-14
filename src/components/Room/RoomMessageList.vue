@@ -1,5 +1,5 @@
 <template>
-  <div class='room__message-container hidden-scroll'>
+  <div ref='messageContainer' class='room__message-container hidden-scroll'>
     <ul class='messages'>
       <MessageListItem
         v-for='message of messages'
@@ -13,7 +13,7 @@
 
 <script>
   import { socket } from '../../services/socketService'
-  import { computed, onBeforeUnmount, onMounted } from 'vue'
+  import { computed, onBeforeUnmount, onMounted, ref, onUpdated } from 'vue'
   import MessageListItem from './MessageListItem'
   import { useStore } from 'vuex'
 
@@ -25,10 +25,12 @@
     },
     setup(props) {
       const store = useStore()
+      const messages = computed(() => store.state.room.messages)
+      const messageContainer = ref(null)
 
+      onUpdated(() => messageContainer.value.scrollTo({top: messageContainer.value.scrollHeight, behavior: 'smooth'}))
       const isCurrentUser = (username) => username === store.state.auth.username
       const messageKey = (message) => message.user.username + message.date
-      const messages = computed(() => store.state.room.messages)
 
       const onMessageHandler = (data) => {
         store.dispatch('room/pushMessageSocket', data)
@@ -39,18 +41,17 @@
         socket.on('message', onMessageHandler)
       })
       onBeforeUnmount(() => {
-        store.commit('room/CLEAR_MESSAGES')
         socket.off('message', onMessageHandler)
+        store.commit('room/CLEAR_MESSAGES')
       })
 
-      return { messages, isCurrentUser, messageKey }
+      return { messages, isCurrentUser, messageKey, messageContainer }
     },
   }
 </script>
 
 <style lang='scss'>
   .room__message-container {
-    border-right: 2px solid #ffc3a0;
     overflow-y: scroll;
     padding-right: 5px;
     max-height: calc(100vh - 172px);

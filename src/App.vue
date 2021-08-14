@@ -13,7 +13,7 @@
   export default {
     setup() {
       const route = useRoute()
-      const layout = computed(() => (route.meta.layout || 'main') + '-layout');
+      const layout = computed(() => (route.meta.layout || 'main') + '-layout')
 
       return { layout }
     },
@@ -61,12 +61,21 @@
     opacity: 0;
   }
 
-  .hidden-scroll::-webkit-scrollbar {
-    display: none;
-  }
-
   .hidden-scroll {
     -ms-overflow-style: none;
     scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0.4rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(255, 195, 160, 0.5);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 195, 160, 1);
+      outline: 1px solid #7c7c7c;
+    }
   }
 </style>
