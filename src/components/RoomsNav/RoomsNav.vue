@@ -8,6 +8,7 @@
     </div>
     <hr>
     <RoomsList></RoomsList>
+
     <CreateRoom v-if='visibleModal' @close='changeModalVisibility'></CreateRoom>
   </nav>
 </template>

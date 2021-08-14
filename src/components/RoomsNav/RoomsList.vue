@@ -8,26 +8,17 @@
 
 <script>
   import RoomsListItem from '@/components/RoomsNav/RoomsListItem.vue'
-  import apiService from '../../services/apiService'
-  import { reactive, onMounted } from 'vue'
+  import { onMounted, computed } from 'vue'
   import { useStore } from 'vuex'
 
   export default {
     name: 'RoomsNavList',
     setup() {
       const store = useStore()
-      const rooms = reactive([])
+      const rooms = computed(() => store.state.rooms)
 
       onMounted(() => {
-        const { userId, token } = store.state.auth
-
-        apiService.getAllUserRooms(userId, token).then(roomsData => {
-          roomsData?.data?.rooms.map(async room => {
-            const data = await apiService.getRoom(room.id, token)
-            const usersCount = data.data.users.length
-            rooms.push({...room, users: usersCount})
-          })
-        })
+        store.dispatch('fetchRooms')
       })
 
       return { rooms }

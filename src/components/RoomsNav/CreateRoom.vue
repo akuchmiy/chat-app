@@ -5,13 +5,13 @@
     </template>
     <template v-slot:body>
       <form class='modal-inputs'>
-        <BasicInput placeholder='Enter room name'></BasicInput>
-        <BasicInput placeholder='Enter room id'></BasicInput>
+        <BasicInput v-model.trim='roomName' placeholder='Enter room name'></BasicInput>
+        <BasicInput v-model.trim='roomId' placeholder='Enter room id'></BasicInput>
       </form>
     </template>
     <template v-slot:footer>
       <div class='modal-buttons'>
-        <BasicButton>Create room</BasicButton>
+        <BasicButton @click='createRoom'>Create room</BasicButton>
         <BasicButton>Join room</BasicButton>
       </div>
     </template>
@@ -20,10 +20,23 @@
 
 <script>
   import ModalWindow from '../ModalWindow'
+  import { ref } from 'vue'
+  import { useStore } from 'vuex'
 
   export default {
     name: 'CreateRoom',
     emits: ['close'],
+    setup() {
+      const store = useStore()
+      const roomName = ref('')
+      const roomId = ref('')
+      const createRoom = () => {
+        if (!roomName.value) return
+        store.dispatch('createRoom', roomName.value)
+      }
+
+      return { roomName, roomId, createRoom }
+    },
     components: { ModalWindow },
   }
 </script>
