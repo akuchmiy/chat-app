@@ -38,6 +38,7 @@
     display: flex;
     flex-direction: column;
     background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    padding: 0 10px 10px;
   }
 
   .rounded-shadow {
