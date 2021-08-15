@@ -4,4 +4,9 @@ module.exports = function onUserLeaving(io, socket) {
     socket.leave(socket.currentRoom)
     socket.currentRoom = null
   })
+
+  socket.on("disconnecting", (reason) => {
+    socket.to(socket.currentRoom).emit('user leaving', socket.userId)
+    socket.leave(socket.currentRoom)
+  })
 }
