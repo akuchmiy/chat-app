@@ -8,7 +8,7 @@ const roomController = {
       if (!rooms)
         return res.status(204)
 
-      return res.status(200).json({ data: rooms })
+      return res.status(200).json(rooms)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
@@ -24,7 +24,7 @@ const roomController = {
       user.rooms.push({ id: room._id, name: room.name })
       await user.save()
 
-      return res.status(200).json({ data: room })
+      return res.status(200).json(room)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
@@ -34,7 +34,7 @@ const roomController = {
     try {
       const room = req.resource
 
-      return res.status(200).json({ data: room })
+      return res.status(200).json(room)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
@@ -65,7 +65,7 @@ const roomController = {
       user.rooms.push({id: room._id, name: room.name})
       await user.save()
 
-      return res.status(200).json({ data: room })
+      return res.status(200).json(room)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }

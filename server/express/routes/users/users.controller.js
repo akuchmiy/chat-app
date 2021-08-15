@@ -8,7 +8,7 @@ const userController = {
       if (!users)
         return res.status(204)
 
-      return res.status(200).json({ data: users })
+      return res.status(200).json(users)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
@@ -18,7 +18,7 @@ const userController = {
     try {
       const user = req.resource
 
-      return res.status(200).json({ data: user })
+      return res.status(200).json(user)
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
@@ -32,7 +32,7 @@ const userController = {
 
       return res
         .status(200)
-        .json({ data: { _id: user._id, rooms: user.rooms } })
+        .json({ _id: user._id, rooms: user.rooms })
     } catch (e) {
       return res.status(500).json({ message: 'Unexpected server error ' + e })
     }
