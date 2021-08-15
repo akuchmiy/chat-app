@@ -1,7 +1,7 @@
 <template>
   <ModalWindow classValue='create-room' @close='$emit("close")'>
     <template v-slot:header>
-      <h3>Create of join the existing room</h3>
+      <h3>Create or join the existing room</h3>
     </template>
     <template v-slot:body>
       <form class='modal-inputs'>
@@ -12,7 +12,7 @@
     <template v-slot:footer>
       <div class='modal-buttons'>
         <BasicButton @click='createRoom'>Create room</BasicButton>
-        <BasicButton>Join room</BasicButton>
+        <BasicButton @click='addRoom'>Join room</BasicButton>
       </div>
     </template>
   </ModalWindow>
@@ -26,16 +26,20 @@
   export default {
     name: 'CreateRoom',
     emits: ['close'],
-    setup() {
+    setup(props, {emit}) {
       const store = useStore()
       const roomName = ref('')
       const roomId = ref('')
       const createRoom = () => {
         if (!roomName.value) return
-        store.dispatch('createRoom', roomName.value)
+        store.dispatch('createRoom', roomName.value).then(() => emit('close'))
+      }
+      const addRoom = () => {
+        if (!roomId.value) return
+        store.dispatch('addRoom', roomId.value).then(() => emit('close'))
       }
 
-      return { roomName, roomId, createRoom }
+      return { roomName, roomId, createRoom, addRoom }
     },
     components: { ModalWindow },
   }

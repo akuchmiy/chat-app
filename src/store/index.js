@@ -25,6 +25,7 @@ export default createStore({
         roomsData?.data?.rooms.map(async room => {
           const data = await apiService.getRoom(room.id, rootState.auth.token)
           const usersCount = data.data.users.length
+          console.log(room)
           commit('PUSH_ROOM', { ...room, users: usersCount })
         })
       })
@@ -32,9 +33,15 @@ export default createStore({
     createRoom({ commit, rootState }, roomName) {
       return apiService.postRoom(roomName, rootState.auth.token).then((data) => {
         const room = data.data
-        commit('PUSH_ROOM', {name: room.name, users: room.users.length})
+        commit('PUSH_ROOM', {id: room._id, name: room.name, users: room.users.length})
       })
     },
+    addRoom({commit, rootState}, roomId) {
+      return apiService.postRoomUser(roomId, rootState.auth.token).then((data) => {
+        const room = data.data
+        commit('PUSH_ROOM', {id: room._id, name: room.name, users: room.users.length})
+      })
+    }
   },
   modules: {
     auth,

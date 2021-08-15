@@ -19,6 +19,9 @@ export default function roomApiService(apiClient) {
     },
     getRoomUsers(roomId, token) {
       return apiClient.get(`/rooms/${roomId}/users`, setAuthHeader(token)).then(data => data.data)
+    },
+    postRoomUser(roomId, token) {
+      return apiClient.post(`/rooms/${roomId}/users`, {}, setAuthHeader(token)).then(data => data.data)
     }
   }
 }
