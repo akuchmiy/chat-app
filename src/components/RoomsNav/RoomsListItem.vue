@@ -47,8 +47,7 @@
     cursor: pointer;
 
     &:hover {
-      transform: scale(1.08);
-      box-shadow: 0 9px 47px 11px rgba(51, 51, 51, 0.18);
+      background-color: #eeeeee;
     }
 
     div {

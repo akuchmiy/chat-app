@@ -33,7 +33,7 @@ export default {
     },
     pushMessage({ commit, rootState }, { data, roomId }) {
       return apiService.postRoomMessage(data, roomId, rootState.auth.token).then((serverData) => {
-        commit('PUSH_MESSAGE', serverData)
+        commit('PUSH_MESSAGE', serverData.data)
       })
     },
     pushMessageSocket({ commit }, data) {
