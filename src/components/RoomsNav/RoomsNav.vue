@@ -7,8 +7,9 @@
       </BasicButton>
     </div>
     <hr>
-    <RoomsList></RoomsList>
-
+    <div class='rooms hidden-scroll'>
+      <RoomsList></RoomsList>
+    </div>
     <CreateRoom v-if='visibleModal' @close='changeModalVisibility'></CreateRoom>
   </nav>
 </template>
@@ -35,6 +36,8 @@
 
 <style>
   .nav {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     padding: 10px;
     overflow: hidden;
@@ -48,6 +51,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .rooms {
+    flex: 1 1 auto;
+    max-height: calc(100vh - 156px);
+    overflow-y: scroll;
+    padding-right: 5px;
+    margin-right: -10px;
   }
 
   .nav__new-room {

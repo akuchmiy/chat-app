@@ -2,7 +2,10 @@
   <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
     <div class='room__header'>
-      <h2>{{ roomName }}</h2>
+      <div class='room__info'>
+        <h2>{{ roomName }}</h2>
+        <span>{{ roomId }}</span>
+      </div>
       <h3>Users</h3>
     </div>
     <div class='room__body'>
@@ -72,6 +75,14 @@
     grid-template-columns: 3fr 1fr;
     column-gap: 10px;
     margin-bottom: 10px;
+
+    .room__info {
+      display: flex;
+      align-items: center;
+      h2 {
+        margin-right: 5px;
+      }
+    }
   }
 
   //.fade-enter-active,
