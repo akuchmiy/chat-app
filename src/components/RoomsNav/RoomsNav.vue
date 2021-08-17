@@ -43,6 +43,12 @@
     overflow: hidden;
   }
 
+  @media (max-width: 768px) {
+    .nav {
+      max-width: 100%;
+    }
+  }
+
   .nav__header, hr {
     margin-bottom: 10px;
   }

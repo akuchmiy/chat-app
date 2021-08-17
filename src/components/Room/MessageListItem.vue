@@ -40,7 +40,7 @@
     border-radius: 10px;
     justify-self: start;
     max-width: 60%;
-    word-break: break-word;
+    overflow-wrap: anywhere;
   }
 
   .user-message .user-name time {
