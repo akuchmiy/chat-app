@@ -60,7 +60,7 @@
       list-style: none;
       display: grid;
       row-gap: 5px;
-
+      max-width: 100%;
     }
   }
 </style>

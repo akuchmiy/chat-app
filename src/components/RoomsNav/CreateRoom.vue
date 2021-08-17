@@ -32,6 +32,7 @@
       const roomId = ref('')
       const createRoom = () => {
         if (!roomName.value) return
+        if (roomName.value.length > 18) return
         store.dispatch('createRoom', roomName.value).then(() => emit('close'))
       }
       const addRoom = () => {
