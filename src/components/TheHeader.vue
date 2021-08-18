@@ -13,7 +13,8 @@
     <div class='main__header-info'>
       <h1>Chat app</h1>
       <div class='user-info'>
-        <span><i>{{ username }}</i></span>
+<!--        <span aria-label='Username'><i>{{ username }}</i></span>-->
+        <BasicButton @click='logout'>Logout</BasicButton>
       </div>
     </div>
   </header>
@@ -22,17 +23,23 @@
 <script>
   import { useStore } from 'vuex'
   import { computed } from 'vue'
+  import { useRouter } from 'vue-router'
 
   export default {
     name: 'TheHeader',
     setup() {
       const store = useStore()
+      const router = useRouter()
       const visibleNav = computed(() => store.state.visibleNav)
-      const username = computed(() => store.state.auth.username)
       const faIcon = computed(() => visibleNav.value ? ['fas', 'times'] : ['fas', 'bars'])
       const toggleNav = () => store.commit('SET_NAV_STATUS', !visibleNav.value)
 
-      return { toggleNav, faIcon, username, visibleNav }
+      function logout() {
+        store.dispatch('auth/logout')
+        router.push({ name: 'Auth'})
+      }
+
+      return { toggleNav, faIcon, visibleNav, logout }
     },
   }
 </script>
@@ -57,6 +64,18 @@
       display: flex;
       flex: 1 1 auto;
       justify-content: space-between;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        margin-right: 10px;
+      }
+      button {
+        height: 36px;
+      }
     }
 
     .menu-bar {

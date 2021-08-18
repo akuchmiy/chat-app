@@ -18,6 +18,9 @@ export default createStore({
     PUSH_ROOM(state, room) {
       state.rooms.push(room)
     },
+    CLEAR_ROOMS(state) {
+      state.rooms = []
+    }
   },
   actions: {
     fetchRooms({ commit, rootState }) {

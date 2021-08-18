@@ -22,7 +22,6 @@
 
     &:focus, &:hover {
       outline: none;
-      transform: translate(0, -4px);
       border: 1px solid black;
     }
     &:active {

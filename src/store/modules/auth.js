@@ -8,17 +8,24 @@ export default {
     username: '',
   },
   mutations: {
-    SET_USER_DATA(state, {userId, token, username}) {
+    SET_USER_DATA(state, { userId, token, username }) {
       state.userId = userId
       state.token = token
       state.username = username
       console.log(token)
     },
+    CLEAR_USER_DATA(state) {
+      state.username = state.userId = state.token = ''
+    },
   },
   actions: {
     setUserData({ commit }, { id, token, username }) {
       if (!(id && token && username)) return
-      commit('SET_USER_DATA', {userId: id, token, username})
+      commit('SET_USER_DATA', { userId: id, token, username })
+    },
+    logout({ commit }) {
+      commit('CLEAR_USER_DATA')
+      commit('CLEAR_ROOMS', null, { root: true })
     },
   },
   getters: {
