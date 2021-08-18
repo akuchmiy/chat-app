@@ -4,7 +4,7 @@
       <h1 class='authorization__title'>Please log in</h1>
       <div class='authorization__fields'>
         <label for='username'>Username:<abbr title='required' aria-label='required'>*</abbr></label>
-        <BasicInput id='username' v-model.trim='username' name='username' placeholder='Enter username'></BasicInput>
+        <BasicInput v-focus id='username' v-model.trim='username' name='username' placeholder='Enter username'></BasicInput>
         <p v-show='usernameMessage' class='validation-error'>{{ usernameMessage }}</p>
 
         <label for='password'>Password:<abbr title='required' aria-label='required'>*</abbr></label>

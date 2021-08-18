@@ -5,7 +5,7 @@
     </template>
     <template v-slot:body>
       <form class='modal-inputs'>
-        <BasicInput v-model.trim='roomName' placeholder='Enter room name'></BasicInput>
+        <BasicInput v-focus v-model.trim='roomName' placeholder='Enter room name'></BasicInput>
         <BasicInput v-model.trim='roomId' placeholder='Enter room id'></BasicInput>
       </form>
     </template>
