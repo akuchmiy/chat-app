@@ -12,7 +12,6 @@ export default {
       state.userId = userId
       state.token = token
       state.username = username
-      console.log(token)
     },
     CLEAR_USER_DATA(state) {
       state.username = state.userId = state.token = ''

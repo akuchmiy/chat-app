@@ -23,6 +23,7 @@
 
       const message = ref('')
       const sendMessage = () => {
+        if (!message.value) return
         const data = {
           username: store.state.auth.username,
           text: message.value,

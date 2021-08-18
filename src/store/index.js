@@ -28,7 +28,6 @@ export default createStore({
         roomsData?.data?.rooms.map(async room => {
           const data = await apiService.getRoom(room.id, rootState.auth.token)
           const usersCount = data.data.users.length
-          console.log(room)
           commit('PUSH_ROOM', { ...room, users: usersCount })
         })
       })
