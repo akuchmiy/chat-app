@@ -24,7 +24,7 @@
   import { onMounted, ref } from 'vue'
   import { useStore } from 'vuex'
   import { socket } from '@/services/socketService'
-  import apiService from '../../services/apiService'
+  // import apiService from '../../services/apiService'
   import RoomMessageList from '@/components/Room/RoomMessageList'
   import RoomUsersList from '@/components/Room/RoomUsersList'
   import RoomMessageForm from './RoomMessageForm'
@@ -37,13 +37,11 @@
       const store = useStore()
       const roomIdInput = ref(null)
       const roomId = route.params.roomId
-      const roomName = ref('')
+      const roomName = route.query.roomName
 
       const connectToRoom = () => {
-        const { userId, token } = store.state.auth
-        apiService.getRoom(roomId, token)
-          .then((data) => roomName.value = data.data.name)
-          .then(() => store.dispatch('room/fetchUsers', roomId))
+        const { userId } = store.state.auth
+        store.dispatch('room/fetchUsers', roomId)
           .then(() => socket.emit('connect to room', userId, roomId, (activeUsers) => {
             activeUsers.forEach(userId => store.commit('room/SET_USER_STATUS', {
               userId,

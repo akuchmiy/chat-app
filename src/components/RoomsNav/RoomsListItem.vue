@@ -9,7 +9,8 @@
 </template>
 
 <script>
-  import {computed} from 'vue'
+  import { computed } from 'vue'
+
   export default {
     name: 'RoomsListItem',
     props: {
@@ -19,9 +20,12 @@
       },
     },
     setup(props) {
-      const link = computed(() => `/rooms/${props.room.id}`)
+      const link = computed(() => ({
+        path: `/rooms/${props.room.id}`,
+        query: { roomName: props.room.name },
+      }))
 
-      return {link}
+      return { link }
     },
   }
 </script>
@@ -71,7 +75,7 @@
     }
   }
 
-  a.rooms__list-link.router-link-exact-active .rooms__list-item{
+  a.rooms__list-link.router-link-exact-active .rooms__list-item {
     background-color: #eeeeee;
   }
 </style>
