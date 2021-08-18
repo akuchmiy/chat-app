@@ -1,35 +1,31 @@
 <template>
-  <teleport to='#app'>
-    <!--    <transition name='modal'>-->
-    <div @click='closeModal' class='modal-mask' :class='classValue'>
-      <div class='modal-wrapper'>
-        <div @click.prevent class='modal-container rounded-shadow'>
+  <div @click='closeModal' class='modal-mask' :class='classValue'>
+    <div class='modal-wrapper'>
+      <div @click.prevent class='modal-container rounded-shadow'>
 
-          <div class='modal-header'>
-            <slot name='header'>
-              default header
-            </slot>
-          </div>
+        <div class='modal-header'>
+          <slot name='header'>
+            default header
+          </slot>
+        </div>
 
-          <div class='modal-body'>
-            <slot name='body'>
-              default body
-            </slot>
-          </div>
+        <div class='modal-body'>
+          <slot name='body'>
+            default body
+          </slot>
+        </div>
 
-          <div class='modal-footer'>
-            <slot name='footer'>
-              default footer
-              <BasicButton class='modal-default-button' @click="$emit('close')">
-                OK
-              </BasicButton>
-            </slot>
-          </div>
+        <div class='modal-footer'>
+          <slot name='footer'>
+            default footer
+            <BasicButton class='modal-default-button' @click="$emit('close')">
+              OK
+            </BasicButton>
+          </slot>
         </div>
       </div>
     </div>
-    <!--    </transition>-->
-  </teleport>
+  </div>
 </template>
 
 <script>
@@ -85,18 +81,5 @@
   .modal-default-button {
     float: right;
   }
-
-  /*.modal-enter-to {*/
-  /*  opacity: 0;*/
-  /*}*/
-
-  /*.modal-leave-from {*/
-  /*  opacity: 0;*/
-  /*}*/
-
-  /*.modal-enter-active .modal-container,*/
-  /*.modal-leave-active .modal-container {*/
-  /*  transform: scale(1.1);*/
-  /*}*/
 
 </style>

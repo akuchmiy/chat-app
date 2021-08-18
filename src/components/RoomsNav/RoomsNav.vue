@@ -10,7 +10,11 @@
     <div class='rooms hidden-scroll'>
       <RoomsList></RoomsList>
     </div>
-    <CreateRoom v-if='visibleModal' @close='changeModalVisibility'></CreateRoom>
+    <teleport to='#app'>
+      <transition name='modal' mode='out-in'>
+        <CreateRoom v-if='visibleModal' @close='changeModalVisibility'></CreateRoom>
+      </transition>
+    </teleport>
   </nav>
 </template>
 
@@ -47,6 +51,7 @@
       max-width: 100%;
     }
   }
+
   hr {
     margin-bottom: 10px;
   }
@@ -71,5 +76,18 @@
 
   .nav__new-room {
     align-items: center;
+  }
+
+  .modal-enter-from {
+    opacity: 0;
+  }
+
+  .modal-leave-to {
+    opacity: 0;
+  }
+
+  .modal-enter-active .modal-container,
+  .modal-leave-active .modal-container {
+    transform: scale(1.1);
   }
 </style>

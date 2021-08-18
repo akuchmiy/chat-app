@@ -49,7 +49,6 @@
   .slide-enter-active,
   .slide-leave-active {
     transition: all .5s;
-    //opacity: 1;
   }
 
   .slide-enter-from {
