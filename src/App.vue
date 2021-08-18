@@ -62,9 +62,21 @@
     opacity: 0;
   }
 
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip: rect(0 0 0 0)
+  }
+
   .hidden-scroll {
     -ms-overflow-style: none;
     scrollbar-width: none;
+
     &::-webkit-scrollbar {
       width: 0.4rem;
     }

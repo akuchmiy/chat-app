@@ -1,7 +1,7 @@
 <template>
   <ModalWindow classValue='create-room' @close='$emit("close")'>
     <template v-slot:header>
-      <h3>Create or join the existing room</h3>
+      <h3>Create or join an existing room</h3>
     </template>
     <template v-slot:body>
       <form class='modal-inputs'>

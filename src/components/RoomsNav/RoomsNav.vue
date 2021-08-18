@@ -39,7 +39,6 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    padding: 10px;
     overflow: hidden;
   }
 
@@ -48,9 +47,13 @@
       max-width: 100%;
     }
   }
-
-  .nav__header, hr {
+  hr {
     margin-bottom: 10px;
+  }
+
+  .nav__header {
+    margin-bottom: 10px;
+    padding: 10px 10px 0 10px;
   }
 
   .nav__header {
@@ -63,8 +66,7 @@
     flex: 1 1 auto;
     max-height: calc(100vh - 156px);
     overflow-y: scroll;
-    padding-right: 5px;
-    margin-right: -10px;
+    padding: 0 10px 10px 10px;
   }
 
   .nav__new-room {

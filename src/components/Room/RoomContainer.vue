@@ -4,7 +4,9 @@
     <div class='room__header'>
       <div class='room__info'>
         <h2>{{ roomName }}</h2>
-        <span>{{ roomId }}</span>
+        <BasicButton @click='copyId'>Copy id
+          <input ref='roomIdInput' class='visually-hidden' :value='roomId' type='text' aria-hidden='true' tabindex='-1'>
+        </BasicButton>
       </div>
       <h3>Users</h3>
     </div>
@@ -33,6 +35,7 @@
     setup() {
       const route = useRoute()
       const store = useStore()
+      const roomIdInput = ref(null)
       const roomId = route.params.roomId
       const roomName = ref('')
 
@@ -44,13 +47,22 @@
           .then(() => socket.emit('connect to room', userId, roomId, (activeUsers) => {
             activeUsers.forEach(userId => store.commit('room/SET_USER_STATUS', {
               userId,
-              status: true
+              status: true,
             }))
           }))
       }
       onMounted(connectToRoom)
 
-      return { roomId, roomName }
+      const copyId = () => {
+        if (!navigator.clipboard) {
+          roomIdInput.value.select()
+          document.execCommand('copy')
+        } else {
+          navigator.clipboard.writeText(roomId)
+        }
+      }
+
+      return { roomId, roomName, copyId, roomIdInput }
     },
   }
 </script>
@@ -79,8 +91,14 @@
     .room__info {
       display: flex;
       align-items: center;
+
       h2 {
         margin-right: 5px;
+      }
+
+      button {
+        font-size: 0.7em;
+        padding: 5px;
       }
     }
   }
