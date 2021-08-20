@@ -65,13 +65,19 @@
       clip-path: circle(40px at 20px 50%);
     }
 
+    h4 {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     span, h4 {
       font-size: 24px;
       z-index: 2;
     }
 
     span {
-      margin: 0 30px 0 10px;
+      flex: 0 0 30%;
     }
   }
 

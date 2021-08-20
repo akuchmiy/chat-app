@@ -2,16 +2,14 @@
   <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
     <div class='room__header'>
-        <h2>{{ roomName }}</h2>
-        <BasicButton @click='copyId'>Copy id
-          <input ref='roomIdInput' class='visually-hidden' :value='roomId' type='text' aria-hidden='true' tabindex='-1'>
-        </BasicButton>
+      <h2>{{ roomName }}</h2>
+      <BasicButton @click='copyId'>Copy id
+        <input ref='roomIdInput' class='visually-hidden' :value='roomId' type='text' aria-hidden='true' tabindex='-1'>
+      </BasicButton>
     </div>
     <div class='room__body'>
       <RoomMessageList :roomId='roomId'></RoomMessageList>
       <teleport to='.nav' :disabled='!teleported'>
-        <h3 v-if='teleported'>Users</h3>
-        <!--   TODO move Users h3 to RoomUsersList component somehow    -->
         <RoomUsersList :roomId='roomId'></RoomUsersList>
       </teleport>
     </div>

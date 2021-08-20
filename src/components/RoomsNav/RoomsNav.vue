@@ -49,7 +49,7 @@
   @media (max-width: 768px) {
     .nav {
       display: grid;
-      grid-template-rows: auto 1fr auto 1fr;
+      grid-template-rows: auto 1fr 1fr;
       max-width: 100%;
       height: calc(100vh - 76px);
     }

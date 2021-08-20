@@ -1,13 +1,16 @@
 <template>
-  <div class='room__users hidden-scroll'>
-    <ul class='users'>
-      <UserListItem
-        v-for='user of users'
-        :key='user.id'
-        :username='user.username'
-        :online='user.online'
-      ></UserListItem>
-    </ul>
+  <div class='room__users'>
+    <h3>Users</h3>
+    <div class='room__users-container hidden-scroll'>
+      <ul class='users'>
+        <UserListItem
+          v-for='user of users'
+          :key='user.id'
+          :username='user.username'
+          :online='user.online'
+        ></UserListItem>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -54,13 +57,24 @@
 
 <style lang='scss'>
   .room__users {
-    overflow-y: scroll;
-    overflow-x: visible;
-    max-height: calc(100vh - 172px);
+    margin-right: -10px;
+    overflow: hidden;
+
+    h3 {
+      margin-bottom: 5px;
+    }
+
     @media (max-width: 769px) {
-      padding-right: 10px;
       margin: 10px 0 10px 10px;
     }
+  }
+
+  .room__users-container {
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: visible;
+    height: calc(100% - 27px);
+
     ul {
       list-style: none;
     }
