@@ -92,7 +92,6 @@
     opacity: 0;
   }
 
-  .modal-enter-active .modal-container,
   .modal-leave-active .modal-container {
     transform: scale(1.1);
   }

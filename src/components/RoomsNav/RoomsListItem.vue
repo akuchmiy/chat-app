@@ -1,5 +1,5 @@
 <template>
-  <router-link :to='link' class='rooms__list-link'>
+  <router-link :to='link' class='rooms__list-link' @click='closeNav'>
     <div class='rooms__list-item'>
       <div></div>
       <span><b>{{ room.users }}</b></span>
@@ -10,6 +10,7 @@
 
 <script>
   import { computed } from 'vue'
+  import { useStore } from 'vuex'
 
   export default {
     name: 'RoomsListItem',
@@ -20,12 +21,17 @@
       },
     },
     setup(props) {
+      const store = useStore()
       const link = computed(() => ({
         path: `/rooms/${props.room.id}`,
         query: { roomName: props.room.name },
       }))
 
-      return { link }
+      function closeNav() {
+        store.commit('SET_NAV_STATUS', false)
+      }
+
+      return { link, closeNav }
     },
   }
 </script>
