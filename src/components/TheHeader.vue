@@ -83,7 +83,7 @@
       display: none;
       margin-right: 10px;
       cursor: pointer;
-      @media (max-width: 768px) {
+      @media (max-width: $mobile-breakpoint) {
         display: inline;
       }
 

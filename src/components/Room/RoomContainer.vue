@@ -50,7 +50,7 @@
       }
       // onMounted(connectToRoom)
       const resizeListener = () => {
-        teleported.value = window.innerWidth < 769
+        teleported.value = window.innerWidth < 1025
       }
       onMounted(() => {
         connectToRoom()
@@ -90,7 +90,7 @@
     column-gap: 10px;
     flex: 1 1 auto;
 
-    @media (max-width: 769px) {
+    @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 1fr;
     }
   }

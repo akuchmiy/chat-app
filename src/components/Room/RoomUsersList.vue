@@ -67,7 +67,7 @@
       margin-bottom: 5px;
     }
 
-    @media (max-width: 769px) {
+    @media (max-width: $mobile-breakpoint) {
       margin: 10px 0 10px 10px;
     }
   }

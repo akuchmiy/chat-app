@@ -30,7 +30,7 @@
     grid-template-columns: 1fr 3fr;
     column-gap: 10px;
 
-    @media (max-width: 768px) {
+    @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 1fr;
       .nav {
         z-index: -1;

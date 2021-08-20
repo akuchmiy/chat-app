@@ -46,7 +46,7 @@
     display: flex;
     max-width: 75%;
     justify-content: space-between;
-    @media (max-width: 769px) {
+    @media (max-width: $mobile-breakpoint) {
       max-width: 100%;
     }
   }

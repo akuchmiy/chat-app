@@ -9,7 +9,6 @@
         <font-awesome-icon :icon="['fas', 'plus']" />
       </BasicButton>
     </div>
-<!--    <hr>-->
     <div class='rooms hidden-scroll'>
       <RoomsList></RoomsList>
     </div>
@@ -41,7 +40,7 @@
   }
 </script>
 
-<style>
+<style lang='scss'>
   .nav {
     display: flex;
     flex-direction: column;
@@ -49,7 +48,7 @@
     overflow: hidden;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: $mobile-breakpoint) {
     .nav {
       display: grid;
       grid-template-rows: auto 1fr 1fr;
