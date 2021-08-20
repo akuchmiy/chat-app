@@ -41,11 +41,14 @@
   }
 </script>
 
-<style>
+<style lang='scss'>
   .room__message-form {
     display: flex;
     max-width: 75%;
     justify-content: space-between;
+    @media (max-width: 769px) {
+      max-width: 100%;
+    }
   }
 
   .room__message-form-input {

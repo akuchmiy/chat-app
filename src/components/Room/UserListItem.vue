@@ -28,6 +28,12 @@
     font-size: 1.3em;
     margin-bottom: 5px;
 
+    .username {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
     .status {
       color: red;
     }

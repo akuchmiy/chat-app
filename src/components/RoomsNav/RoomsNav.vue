@@ -6,7 +6,7 @@
         <font-awesome-icon :icon="['fas', 'plus']" />
       </BasicButton>
     </div>
-    <hr>
+<!--    <hr>-->
     <div class='rooms hidden-scroll'>
       <RoomsList></RoomsList>
     </div>
@@ -48,23 +48,27 @@
 
   @media (max-width: 768px) {
     .nav {
+      display: grid;
+      grid-template-rows: auto 1fr auto 1fr;
       max-width: 100%;
+      height: calc(100vh - 76px);
     }
   }
 
-  hr {
-    margin-bottom: 10px;
-  }
+  /*hr {*/
+  /*  margin-bottom: 10px;*/
+  /*}*/
 
   .nav__header {
     margin-bottom: 10px;
-    padding: 10px 10px 0 10px;
+    padding: 10px;
   }
 
   .nav__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid black;
   }
 
   .rooms {

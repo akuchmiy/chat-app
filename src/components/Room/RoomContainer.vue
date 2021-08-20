@@ -2,17 +2,18 @@
   <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
     <div class='room__header'>
-      <div class='room__info'>
         <h2>{{ roomName }}</h2>
         <BasicButton @click='copyId'>Copy id
           <input ref='roomIdInput' class='visually-hidden' :value='roomId' type='text' aria-hidden='true' tabindex='-1'>
         </BasicButton>
-      </div>
-      <h3>Users</h3>
     </div>
     <div class='room__body'>
       <RoomMessageList :roomId='roomId'></RoomMessageList>
-      <RoomUsersList :roomId='roomId'></RoomUsersList>
+      <teleport to='.nav' :disabled='!teleported'>
+        <h3 v-if='teleported'>Users</h3>
+        <!--   TODO move Users h3 to RoomUsersList component somehow    -->
+        <RoomUsersList :roomId='roomId'></RoomUsersList>
+      </teleport>
     </div>
     <RoomMessageForm :roomId='roomId'></RoomMessageForm>
   </div>
@@ -21,12 +22,12 @@
 
 <script>
   import { useRoute } from 'vue-router'
-  import { onMounted, ref } from 'vue'
+  import { onMounted, onBeforeUnmount, ref } from 'vue'
   import { useStore } from 'vuex'
   import { socket } from '@/services/socketService'
   import RoomMessageList from '@/components/Room/RoomMessageList'
   import RoomUsersList from '@/components/Room/RoomUsersList'
-  import RoomMessageForm from './RoomMessageForm'
+  import RoomMessageForm from '@/components/Room/RoomMessageForm'
 
   export default {
     name: 'RoomContainer',
@@ -37,6 +38,7 @@
       const roomIdInput = ref(null)
       const roomId = route.params.roomId
       const roomName = route.query.roomName
+      const teleported = ref(false)
 
       const connectToRoom = () => {
         const { userId } = store.state.auth
@@ -48,7 +50,19 @@
             }))
           }))
       }
-      onMounted(connectToRoom)
+      // onMounted(connectToRoom)
+      const resizeListener = () => {
+        teleported.value = window.innerWidth < 769
+      }
+      onMounted(() => {
+        connectToRoom()
+        resizeListener()
+        window.addEventListener('resize', resizeListener)
+      })
+      onBeforeUnmount(() => {
+        window.removeEventListener('resize', resizeListener)
+        teleported.value = false
+      })
 
       const copyId = () => {
         if (!navigator.clipboard) {
@@ -59,7 +73,7 @@
         }
       }
 
-      return { roomId, roomName, copyId, roomIdInput }
+      return { roomId, roomName, copyId, roomIdInput, teleported }
     },
   }
 </script>
@@ -77,26 +91,25 @@
     grid-template-columns: 3fr 1fr;
     column-gap: 10px;
     flex: 1 1 auto;
+
+    @media (max-width: 769px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .room__header {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
+    display: flex;
+    align-items: center;
     column-gap: 10px;
     margin-bottom: 10px;
 
-    .room__info {
-      display: flex;
-      align-items: center;
+    h2 {
+      margin-right: 5px;
+    }
 
-      h2 {
-        margin-right: 5px;
-      }
-
-      button {
-        font-size: 0.7em;
-        padding: 5px;
-      }
+    button {
+      font-size: 0.7em;
+      padding: 5px;
     }
   }
 

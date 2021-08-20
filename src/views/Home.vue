@@ -1,5 +1,5 @@
 <template>
-  <div class='home'>
+  <div id='home' class='home'>
     <RoomsNav :class='{visible: visibleNav}' :aria-expanded='visibleNav'></RoomsNav>
     <router-view :key='$route.fullPath'></router-view>
   </div>
@@ -9,6 +9,7 @@
   import RoomsNav from '@/components/RoomsNav/RoomsNav.vue'
   import { useStore } from 'vuex'
   import { computed } from 'vue'
+
   export default {
     name: 'Home',
     setup() {
@@ -39,9 +40,6 @@
       }
       .nav.visible {
         z-index: 1;
-        height: auto;
-        width: auto;
-        display: block;
         left: 0;
       }
     }

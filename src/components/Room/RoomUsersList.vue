@@ -1,5 +1,5 @@
 <template>
-  <div class='room__users'>
+  <div class='room__users hidden-scroll'>
     <ul class='users'>
       <UserListItem
         v-for='user of users'
@@ -54,6 +54,13 @@
 
 <style lang='scss'>
   .room__users {
+    overflow-y: scroll;
+    overflow-x: visible;
+    max-height: calc(100vh - 172px);
+    @media (max-width: 769px) {
+      padding-right: 10px;
+      margin: 10px 0 10px 10px;
+    }
     ul {
       list-style: none;
     }
