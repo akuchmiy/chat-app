@@ -1,5 +1,4 @@
 <template>
-  <!--  <transition name='fade' mode='out-in'>-->
   <div class='room rounded-shadow'>
     <div class='room__header'>
       <h2>{{ roomName }}</h2>
@@ -15,7 +14,6 @@
     </div>
     <RoomMessageForm :roomId='roomId'></RoomMessageForm>
   </div>
-  <!--  </transition>-->
 </template>
 
 <script>
@@ -48,7 +46,6 @@
             }))
           }))
       }
-      // onMounted(connectToRoom)
       const resizeListener = () => {
         teleported.value = window.innerWidth < 1025
       }
@@ -110,14 +107,4 @@
       padding: 5px;
     }
   }
-
-  //.fade-enter-active,
-  //.fade-leave-active {
-  //  transition: .3s;
-  //}
-  //
-  //.fade-enter-to,
-  //.fade-leave-to {
-  //  opacity: 0.5;
-  //}
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div id='home' class='home'>
     <RoomsNav :class='{visible: visibleNav}' :aria-expanded='visibleNav'></RoomsNav>
-    <router-view :key='$route.fullPath'></router-view>
+    <router-view v-slot='{ Component, route }'>
+      <transition name='fade' mode='out-in'>
+        <component :is='Component' :key='route.path'></component>
+      </transition>
+    </router-view>
   </div>
 </template>
 
@@ -43,5 +47,24 @@
         left: 0;
       }
     }
+  }
+
+  .fade-enter-active {
+    opacity: 0.5;
+    transition: .1s;
+    transform: scale(0.8);
+  }
+
+  .fade-leave-active {
+    transition: .3s;
+  }
+  .fade-enter-to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .fade-leave-to {
+    opacity: 0.5;
+    transform: scale(0.8);
   }
 </style>
