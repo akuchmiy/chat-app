@@ -13,7 +13,6 @@
     <div class='main__header-info'>
       <h1>Chat app</h1>
       <div class='user-info'>
-<!--        <span aria-label='Username'><i>{{ username }}</i></span>-->
         <BasicButton @click='logout'>Logout</BasicButton>
       </div>
     </div>

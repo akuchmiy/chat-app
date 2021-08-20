@@ -1,7 +1,10 @@
 <template>
   <nav class='nav rounded-shadow'>
     <div class='nav__header'>
-      <h2>Rooms</h2>
+      <h2>
+        <font-awesome-icon :icon="['fas', 'comment-alt']"></font-awesome-icon>
+        Rooms
+      </h2>
       <BasicButton @click='changeModalVisibility' class='nav__new-room'>
         <font-awesome-icon :icon="['fas', 'plus']" />
       </BasicButton>
@@ -50,7 +53,7 @@
     .nav {
       display: grid;
       grid-template-rows: auto 1fr 1fr;
-      max-width: 100%;
+      width: 100%;
       height: calc(100vh - 76px);
     }
   }

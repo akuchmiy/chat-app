@@ -1,6 +1,9 @@
 <template>
   <div class='room__users'>
-    <h3>Users</h3>
+    <h3>
+      <font-awesome-icon :icon="['fas', 'users']"></font-awesome-icon>
+      Users
+    </h3>
     <div class='room__users-container hidden-scroll'>
       <ul class='users'>
         <UserListItem
