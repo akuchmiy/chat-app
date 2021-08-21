@@ -1,7 +1,7 @@
 <template>
   <form @submit.prevent='sendMessage' class='room__message-form'>
     <BasicInput v-model='message' class='room__message-form-input' placeholder='Enter message'></BasicInput>
-    <BasicButton type='submit'>Send message</BasicButton>
+    <BasicButton type='submit'>Send</BasicButton>
   </form>
 </template>
 
