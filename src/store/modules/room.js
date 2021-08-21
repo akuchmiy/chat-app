@@ -19,9 +19,11 @@ export default {
     SET_USERS(state, users) {
       state.users = users
     },
+    PUSH_USER(state, user) {
+      state.users.push(user)
+    },
     SET_USER_STATUS(state, { userId, status }) {
       const user = state.users.find(user => user.id === userId)
-      if (!user) return
       user.online = status
     },
   },
@@ -48,6 +50,17 @@ export default {
       return apiService.getRoomUsers(roomId, rootState.auth.token).then(data => {
         commit('SET_USERS', data.data)
       })
-    }
+    },
+    setUserStatus({ state, commit, rootState }, { userId, status }) {
+      const user = state.users.find(user => user.id === userId)
+      if (!user) {
+        apiService.getUser(userId, rootState.auth.token).then((data) => {
+          commit('PUSH_USER', { id: data._id, username: data.username })
+          commit('SET_USER_STATUS', {userId, status})
+        })
+      } else {
+        commit('SET_USER_STATUS', {userId, status})
+      }
+    },
   },
 }

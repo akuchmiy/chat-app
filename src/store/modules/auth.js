@@ -14,7 +14,7 @@ export default {
       state.username = username
     },
     CLEAR_USER_DATA(state) {
-      state.username = state.userId = state.token = ''
+      state.username = state.token = ''
     },
   },
   actions: {
