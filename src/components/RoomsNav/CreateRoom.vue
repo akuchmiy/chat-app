@@ -48,17 +48,26 @@
 
 <style lang='scss'>
   .create-room {
+    .modal-container {
+      .modal-inputs,
+      .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input, button {
+          width: 150px;
+        }
+      }
+      @media (max-width: 400px) {
+        width: 300px;
+        .modal-inputs input,
+        .modal-buttons button {
+          width: 110px;
+        }
+      }
+    }
     .modal-header {
       text-align: center;
-    }
-    .modal-inputs,
-    .modal-buttons {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      input, button {
-        width: 150px;
-      }
     }
 
   }

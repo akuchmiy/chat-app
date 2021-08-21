@@ -54,7 +54,8 @@
         apiService.registerUser({
           username: username.value,
           password: password.value,
-        }).catch(() => {
+        }).then(() => passwordMessage.value = 'Successfully registered!')
+          .catch(() => {
           usernameMessage.value = ''
           passwordMessage.value = 'User with such username is already exist'
         })

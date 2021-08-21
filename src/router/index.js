@@ -16,7 +16,7 @@ const routes = [
       {
         path: 'rooms/:roomId',
         name: "Room",
-        component: () => import("../components/Room/RoomContainer")
+        component: () => import("@/components/Room/RoomContainer")
       }
     ]
   },
@@ -30,7 +30,13 @@ const routes = [
     path: "/auth",
     name: "Auth",
     meta: {layout: 'authorization'},
-    component: () => import("../views/Auth.vue"),
+    component: () => import("@/views/Auth"),
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    meta: { layout: 'authorization' },
+    component: () => import("@/views/NotFound")
   },
 ];
 
