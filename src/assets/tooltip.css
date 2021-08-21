@@ -1,0 +1,23 @@
+.tooltip {
+    display: inline-block;
+    position: absolute;
+    max-width: 1px;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    background-color: #ffafbd;
+    padding: 7px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 0);
+    transition: max-width .5s, opacity .4s;
+    white-space: nowrap;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.tooltip.active {
+    max-width: 300px;
+    opacity: 1;
+    transition: opacity .5s, max-width .5s;
+}

@@ -37,13 +37,13 @@
     @media (max-width: $mobile-breakpoint) {
       grid-template-columns: 1fr;
       .nav {
-        z-index: -1;
+        //z-index: -1;
+        z-index: 1;
         position: absolute;
-        left: -100%;
+        left: -110%;
         transition: all .5s;
       }
       .nav.visible {
-        z-index: 1;
         left: 0;
       }
     }

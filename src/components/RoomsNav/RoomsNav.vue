@@ -5,7 +5,11 @@
         <font-awesome-icon :icon="['fas', 'comment-alt']"></font-awesome-icon>
         Rooms
       </h2>
-      <BasicButton @click='changeModalVisibility' class='nav__new-room'>
+      <BasicButton
+        @click='changeModalVisibility'
+        class='nav__new-room'
+        v-tooltip.hover.focus='tooltipOptions'
+      >
         <font-awesome-icon :icon="['fas', 'plus']" />
       </BasicButton>
     </div>
@@ -31,7 +35,14 @@
       const visibleModal = ref(false)
       const changeModalVisibility = () => visibleModal.value = !visibleModal.value
 
-      return { visibleModal, changeModalVisibility }
+      const tooltipOptions = {
+        top: '-30px',
+        left: '-50px',
+        text: "Create or join the room",
+        duration: 3000
+      }
+
+      return { visibleModal, changeModalVisibility, tooltipOptions }
     },
     components: {
       CreateRoom,
@@ -45,7 +56,7 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
-    overflow: hidden;
+    //overflow: hidden;
   }
 
   @media (max-width: $mobile-breakpoint) {

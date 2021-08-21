@@ -2,7 +2,10 @@
   <div class='room rounded-shadow'>
     <div class='room__header'>
       <h2>{{ roomName }}</h2>
-      <BasicButton @click='copyId'>Copy id
+      <BasicButton
+        @click='copyId'
+        v-tooltip.click='tooltipOptions'
+      >Copy id
         <input ref='roomIdInput' class='visually-hidden' :value='roomId' type='text' aria-hidden='true' tabindex='-1'>
       </BasicButton>
     </div>
@@ -68,7 +71,13 @@
         }
       }
 
-      return { roomId, roomName, copyId, roomIdInput, teleported }
+      const tooltipOptions = {
+        top: '-40px',
+        left: '50%',
+        text: 'Done✔'
+      }
+
+      return { roomId, roomName, copyId, roomIdInput, teleported, tooltipOptions }
     },
   }
 </script>
