@@ -1,7 +1,7 @@
 # chat-app
 A simple chat application written in [`Vue`](https://vuejs.org), [`Node.js`](https://nodejs.org/en/) and uses [`MongoDB`](https://www.mongodb.com)
 
-## Architectire
+## Architecture
 ### Database schemas
 #### Room
 ```javascript
@@ -50,11 +50,11 @@ Server consists of [`Express`](https://expressjs.com) and [`Socket.io`](https://
 - Disconnection
 
 ### Client
-Framework - Vue
-State manager - Vuex
-Router - Vue Router
+#### Framework - `Vue`
+#### State manager - `Vuex`
+#### Router - `Vue Router`
 
-Link - (in future) 
+#### Link - (in future) 
 
 ## Project setup
 **Project is configured to use Vue CLI for development and production**
