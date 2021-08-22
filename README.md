@@ -1,6 +1,7 @@
 # chat-app
 A simple chat application written in [`Vue`](https://vuejs.org), [`Node.js`](https://nodejs.org/en/) and uses [`MongoDB`](https://www.mongodb.com)
 
+__App__ - https://salty-bayou-22603.herokuapp.com
 ## Architecture
 ### Database schemas
 #### Room
@@ -55,7 +56,7 @@ Server consists of [`Express`](https://expressjs.com) and [`Socket.io`](https://
 #### State manager - `Vuex`
 #### Router - `Vue Router`
 
-#### Link - (in future) 
+#### Link - https://salty-bayou-22603.herokuapp.com 
 
 ## Project setup
 **Project is configured to use Vue CLI for development and production**
