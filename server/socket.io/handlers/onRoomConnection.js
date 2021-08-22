@@ -13,6 +13,7 @@ module.exports = function onRoomConnection(io, socket) {
     socket.join(nextRoomId)
     socket.to(nextRoomId).emit('user connected', userId)
     socket.currentRoom = nextRoomId
+    // Get all active users in the 'nextRoomId' room
     const socketsIdsInRoom = io.sockets.adapter.rooms.get(nextRoomId)
     const userIds = getUserIdsFromSockets(io, socketsIdsInRoom)
     cb(userIds)
