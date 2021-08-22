@@ -39,6 +39,7 @@ const message = new Schema({
 ```
 ### Server
 Server consists of [`Express`](https://expressjs.com) and [`Socket.io`](https://socket.io) instances
+
 `Express` routes:
 - Rooms
 - Users
