@@ -56,10 +56,10 @@ export default {
       if (!user) {
         apiService.getUser(userId, rootState.auth.token).then((data) => {
           commit('PUSH_USER', { id: data._id, username: data.username })
-          commit('SET_USER_STATUS', {userId, status})
+          commit('SET_USER_STATUS', { userId, status })
         })
       } else {
-        commit('SET_USER_STATUS', {userId, status})
+        commit('SET_USER_STATUS', { userId, status })
       }
     },
   },

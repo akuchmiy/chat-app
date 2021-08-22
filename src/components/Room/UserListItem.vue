@@ -35,10 +35,10 @@
     }
 
     .status {
-      color: red;
+      color: #c37575;
     }
     .online {
-      color: green;
+      color: #66b066;
     }
   }
 </style>

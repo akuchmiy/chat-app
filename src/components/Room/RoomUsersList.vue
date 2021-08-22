@@ -36,10 +36,11 @@
       const users = computed(() => store.state.room.users)
 
       function userConnectedHandler(userId) {
-        store.dispatch('room/setUserStatus', {userId, status: true})
+        store.dispatch('room/setUserStatus', { userId, status: true })
       }
+
       function userDisconnectedHandler(userId) {
-        store.commit('room/SET_USER_STATUS', {userId, status: false})
+        store.commit('room/SET_USER_STATUS', { userId, status: false })
       }
 
       onMounted(() => {
@@ -78,6 +79,7 @@
     overflow-x: visible;
     height: calc(100% - 27px);
     max-height: calc(100vh - 199px);
+
     ul {
       list-style: none;
     }

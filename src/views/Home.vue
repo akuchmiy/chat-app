@@ -50,21 +50,22 @@
   }
 
   .fade-enter-active {
-    opacity: 0.5;
-    transition: .1s;
-    transform: scale(0.8);
+    opacity: 0.7;
+    transition: .3s;
+    transform: scale(0.85);
   }
 
   .fade-leave-active {
     transition: .3s;
   }
+
   .fade-enter-to {
     opacity: 1;
     transform: scale(1);
   }
 
   .fade-leave-to {
-    opacity: 0.5;
-    transform: scale(0.8);
+    opacity: 0.7;
+    transform: scale(0.85);
   }
 </style>
