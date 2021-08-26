@@ -1,7 +1,12 @@
 <template>
   <form @submit.prevent='sendMessage' class='room__message-form'>
-    <BasicInput v-model='message' class='room__message-form-input' placeholder='Enter message'></BasicInput>
-    <BasicButton type='submit'>Send</BasicButton>
+    <BasicInput
+      ref='input'
+      v-model='message'
+      class='room__message-form-input'
+      placeholder='Enter message'
+    ></BasicInput>
+    <BasicButton @click='focusInput' type='submit'>Send</BasicButton>
   </form>
 </template>
 
@@ -15,11 +20,14 @@
     props: {
       roomId: {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     },
     setup(props) {
       const store = useStore()
+      const input = ref(null)
+
+      const focusInput = () => input.value.focus()
 
       const message = ref('')
       const sendMessage = () => {
@@ -27,16 +35,16 @@
         const data = {
           username: store.state.auth.username,
           text: message.value,
-          date: Date.now()
+          date: Date.now(),
         }
-        store.dispatch('room/pushMessage', {data, roomId: props.roomId}).then(() => {
+        store.dispatch('room/pushMessage', { data, roomId: props.roomId }).then(() => {
           socket.emit('message', data)
         })
 
         message.value = ''
       }
 
-      return { message, sendMessage }
+      return { message, sendMessage, input, focusInput }
     },
   }
 </script>
@@ -44,11 +52,7 @@
 <style lang='scss'>
   .room__message-form {
     display: flex;
-    max-width: 75%;
     justify-content: space-between;
-    @media (max-width: $mobile-breakpoint) {
-      max-width: 100%;
-    }
   }
 
   .room__message-form-input {

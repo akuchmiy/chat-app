@@ -15,7 +15,6 @@
         <RoomUsersList :roomId='roomId'></RoomUsersList>
       </teleport>
     </div>
-    <RoomMessageForm :roomId='roomId'></RoomMessageForm>
   </div>
 </template>
 
@@ -26,11 +25,10 @@
   import { socket } from '@/services/socketService'
   import RoomMessageList from '@/components/Room/RoomMessageList'
   import RoomUsersList from '@/components/Room/RoomUsersList'
-  import RoomMessageForm from '@/components/Room/RoomMessageForm'
 
   export default {
     name: 'RoomContainer',
-    components: { RoomMessageForm, RoomUsersList, RoomMessageList },
+    components: { RoomUsersList, RoomMessageList },
     setup() {
       const route = useRoute()
       const store = useStore()

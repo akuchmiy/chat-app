@@ -1,12 +1,24 @@
 <template>
-  <input :value='modelValue' @input='$emit("update:modelValue", $event.target.value)' type='text'>
+  <input
+    :value='modelValue'
+    @input='$emit("update:modelValue", $event.target.value)'
+    type='text'
+    ref='input'
+  >
 </template>
 
 <script>
+  import { ref } from 'vue'
   export default {
     props: ['modelValue'],
     emits: ['update:modelValue'],
     name: 'BasicInput.vue',
+    setup() {
+      const input = ref(null)
+      const focus = () => input.value.focus()
+
+      return { focus, input }
+    }
   }
 </script>
 

@@ -39,7 +39,7 @@
     background-color: #ffafbd;
     border-radius: 10px;
     justify-self: start;
-    max-width: 60%;
+    max-width: 70%;
     overflow-wrap: anywhere;
   }
 
