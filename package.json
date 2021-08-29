@@ -40,6 +40,7 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
+    "bindings": "^1.5.0",
     "chai": "^4.3.4",
     "chokidar": "^3.5.2",
     "eslint": "^6.7.2",
