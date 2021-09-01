@@ -69,7 +69,8 @@
     flex: 1 1 auto;
     overflow-y: scroll;
     padding-right: 5px;
-    max-height: calc(100vh - 172px);
+    margin-bottom: 5px;
+    max-height: calc(100vh - 180px);
 
     .messages {
       list-style: none;

@@ -74,7 +74,7 @@
 
   .hidden-scroll {
     -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-width: thin;
 
     &::-webkit-scrollbar {
       width: 0.4rem;

@@ -87,7 +87,7 @@
   .rooms {
     flex: 1 1 auto;
     max-height: calc(100vh - 156px);
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 0 10px 10px 10px;
   }
 
